@@ -170,3 +170,16 @@ test("every plate value in the layout is a whole or half piece", () => {
   for (const [b, g] of Object.entries(lay)) for (const secs of Object.values(g)) for (const s of secs) for (const it of s.items)
     if ("plate" in it) assert.ok(Number.isInteger(it.plate * 2) && it.plate >= 0 && it.plate <= 24, `${b} ${it.name}: ${it.plate}`);
 });
+
+test("armour filter: plate pieces, armour sections and armour names are armour; the rest is clothing", async () => {
+  const { isArmour } = await import("../js/rules.js");
+  const it = (label, section, plate = 0) => ({ label, section, plate });
+  assert.ok(isArmour(it("Plate Pauldrons", "5. GREATER ARM ARMOR", 2)));
+  assert.ok(isArmour(it("Simple Leather Pteruges", "4. CHEST ARMOR & ACCESSORIES")));
+  assert.ok(isArmour(it("Ingeld Gambeson 1", "8. GAMBESON")));
+  assert.ok(isArmour(it("Full Chainmail Haubergeon", "7. CHAINMAIL")));
+  assert.ok(isArmour(it("Pinkscale Reinforced Jerkin", "ARMOR")));
+  assert.ok(!isArmour(it("Green Sash", "3. BELT, SASHES & BLOUSING")));
+  assert.ok(!isArmour(it("Hooded Cloak", "1. OUTERWEAR")));
+  assert.ok(!isArmour(it("Patterned Shirt", "GARMENTS")));
+});

@@ -135,6 +135,26 @@ export function branchButtons(branches, onPick) {
   });
 }
 
+// Hide the item rows that don't pass show(id), and any pick-one group or section left with nothing showing.
+// While filtering, the "None" choices hide too. Returns how many items are showing.
+export function filterList(root, show, filtering) {
+  let total = 0;
+  root.querySelectorAll(".sec").forEach(sec => {
+    let n = 0;
+    sec.querySelectorAll(".row").forEach(r => {
+      const ok = r.dataset.id ? show(+r.dataset.id) : !filtering;
+      r.hidden = !ok;
+      if (ok && r.dataset.id) n++;
+    });
+    sec.querySelectorAll(".pick").forEach(f => { f.hidden = !f.querySelector(".row[data-id]:not([hidden])"); });
+    sec.querySelectorAll(".secnote").forEach(p => { p.hidden = filtering; });
+    sec.hidden = !n;
+    if (filtering && n) sec.open = true;
+    total += n;
+  });
+  return total;
+}
+
 export function loadError(message, onRetry) {
   const retry = el("button", { type: "button", className: "save alt", textContent: "Try again" });
   retry.addEventListener("click", onRetry);

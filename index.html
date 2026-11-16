@@ -15,44 +15,51 @@
 </head>
 <body>
 <div class="wrap">
-  <header class="top">
+  <header class="top" id="top">
     <div>
       <p class="eyebrow">City of Larova</p>
       <h1>Larovan Uniform Generator</h1>
     </div>
-    <div class="meter" title="Plate pieces in the whole outfit (shirt and pants), counted by the Armour Guide v3, and the lowest City of Larova rank allowed that many. Hauberks aren't counted toward rank.">
-      <div class="meter-head"><span><strong id="plate-num">0</strong> <span id="plate-word">plates</span></span> <span class="meter-rank" id="plate-rank">LR1</span></div>
-      <div class="meter-track" id="plate-meter" role="meter" aria-label="Plates in outfit" aria-valuemin="0" aria-valuemax="24" aria-valuenow="0"><div class="meter-fill" id="plate-fill"></div></div>
+    <div class="top-tools">
+      <div class="meter" title="Plate pieces in the whole outfit (shirt and pants), counted by the Armour Guide v3, and the lowest City of Larova rank allowed that many. Hauberks aren't counted toward rank.">
+        <div class="meter-head"><span><strong id="plate-num">0</strong> <span id="plate-word">plates</span></span> <span class="meter-rank" id="plate-rank">LR1</span></div>
+        <div class="meter-track" id="plate-meter" role="meter" aria-label="Plates in outfit" aria-valuemin="0" aria-valuemax="24" aria-valuenow="0"><div class="meter-fill" id="plate-fill"></div></div>
+        <div class="meter-ladder" id="plate-ladder" aria-hidden="true"></div>
+      </div>
+      <span class="btns">
+        <button class="save alt" id="save-layers" type="button" disabled title="Save each ticked item as its own 585×559 PNG in a .zip, numbered from the bottom layer up">Download layers</button>
+        <button class="save" id="save" type="button" disabled title="Save the finished template as a PNG, ready to send for approval and upload to Roblox">Download PNG</button>
+      </span>
     </div>
   </header>
 
   <main class="grid">
     <aside class="side">
-      <div id="mine"></div>
-      <div class="showcase">
-        <figure><canvas id="sc" width="700" height="373" role="img" aria-label="Outfit showcase: front, back and sides"></canvas></figure>
-        <div class="bar">
-          <label class="skin" for="skin" title="Skin color shown behind the clothes in the showcase. Type a hex code like #EAB892.">Skin <input id="skin" type="text" value="#EAB892" maxlength="7" spellcheck="false" autocomplete="off"></label>
+      <div class="stage">
+        <figure><canvas id="out" width="585" height="559" role="img" aria-label="Uniform preview"></canvas></figure>
+        <div class="stage-tools">
+          <div class="mini" aria-hidden="true">
+            <span><strong class="mini-num">0</strong> <span class="mini-word">plates</span></span><span class="meter-rank mini-rank">LR1</span>
+            <span class="meter-track mini-track"><span class="meter-fill mini-fill"></span></span>
+          </div>
           <div class="switch" role="group" aria-label="Garment">
             <button id="tab-shirt" type="button" aria-pressed="true" data-file="shirt" title="Pick items for the shirt (torso and arms)">Shirt</button>
             <button id="tab-pants" type="button" aria-pressed="false" data-file="pants" title="Pick items for the pants (legs and lower torso)">Pants</button>
           </div>
-          <button class="save alt" id="save-sc" type="button" disabled title="Save the front, back and side showcase of this outfit as a PNG">Download showcase</button>
-        </div>
-      </div>
-      <div class="stage">
-        <figure><canvas id="out" width="585" height="559" role="img" aria-label="Uniform preview"></canvas></figure>
-        <div class="bar">
           <span class="tally"><span class="count" id="count" role="status">Loading layers…</span> <button class="link" id="clear" type="button" title="Untick every generator item on both the shirt and the pants. Your own PNGs stay.">Clear all</button> <button class="link" id="defaults" type="button" title="Replace the outfit with the branch's default uniform on both the shirt and the pants. Your own PNGs stay.">Use defaults</button></span>
-          <span class="btns">
-            <button class="save alt" id="save-layers" type="button" disabled title="Save each ticked item as its own 585×559 PNG in a .zip, numbered from the bottom layer up">Download layers</button>
-            <button class="save" id="save" type="button" disabled title="Save the finished template as a PNG, ready to send for approval and upload to Roblox">Download PNG</button>
-          </span>
         </div>
       </div>
       <p class="warn" id="warn" aria-live="polite" hidden></p>
       <p class="msg" id="msg" aria-live="polite" hidden></p>
       <p class="msg err" id="notice" role="alert" hidden></p>
+      <div class="showcase">
+        <figure><canvas id="sc" width="700" height="373" role="img" aria-label="Outfit showcase: front, back and sides"></canvas></figure>
+        <div class="bar">
+          <label class="skin" for="skin" title="Skin color shown behind the clothes in the showcase. Type a hex code like #EAB892.">Skin <input id="skin" type="text" value="#EAB892" maxlength="7" spellcheck="false" autocomplete="off"></label>
+          <button class="save alt" id="save-sc" type="button" disabled title="Save the front, back and side showcase of this outfit as a PNG">Download showcase</button>
+        </div>
+      </div>
+      <div id="mine"></div>
       <ol class="steps">
         <li><strong>Pick your items</strong> for the shirt, then switch to pants.</li>
         <li><strong>Download</strong> each PNG.</li>
@@ -62,6 +69,16 @@
     </aside>
     <div class="right">
       <nav class="branches" id="branches" aria-label="Branch"></nav>
+      <div class="tools">
+        <label class="search"><span class="sr">Search items</span><input id="search" type="search" placeholder="Search items" autocomplete="off" spellcheck="false"></label>
+        <div class="filters" role="group" aria-label="Show">
+          <button type="button" data-filter="all" aria-pressed="true">All</button>
+          <button type="button" data-filter="armour" aria-pressed="false" title="Armour pieces, maille and gambesons">Armour</button>
+          <button type="button" data-filter="clothing" aria-pressed="false" title="Everything that isn't armour">Clothing</button>
+          <button type="button" data-filter="on" aria-pressed="false" title="Only the items ticked on this garment">Ticked only</button>
+        </div>
+      </div>
+      <p class="msg" id="no-match" hidden>No items match. Clear the search or pick another filter.</p>
       <section class="list" id="list" aria-label="Items"></section>
     </div>
   </main>

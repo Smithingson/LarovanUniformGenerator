@@ -43,7 +43,7 @@ export function plateCount(items, isOn) {
   return total;
 }
 // City of Larova ranks by the most plate pieces each may wear (Armour Guide v3). MR2 allows 6, same as MR1.
-const RANK_PLATES = [[0, "LR1"], [4, "LR3"], [6, "MR1"], [10, "MR3"], [14, "HR1"], [20, "HR2"], [24, "HR3"]];
+export const RANK_PLATES = [[0, "LR1"], [4, "LR3"], [6, "MR1"], [10, "MR3"], [14, "HR1"], [20, "HR2"], [24, "HR3"]];
 export function rankForPlates(n) {
   const r = RANK_PLATES.find(([max]) => n <= max);
   return r ? r[1] : null;
@@ -67,4 +67,11 @@ export function outfitWarnings({ branches, allItems, garmentItems, isOn }) {
     ],
     flagged: new Set([...pairs.flat(), ...needs]),
   };
+}
+
+// For the Armour / Clothing filter: anything that counts plates, sits in an armour or chainmail section,
+// or is named like an armour piece (maille, gambesons and padding included). Everything else is clothing.
+const ARMOUR_WORDS = /armou?r|chain|maille?\b|mail\b|gambeson|plate|scale|lamellar|coif|rondel|besagew|jackchain|gauntl|pauldron|spauld|bracer|couter|greave|cuisse|pole?y|tasset|cuirass|linothorax|gorget|hauberk|haubergeon|jerkin|brigandine/i;
+export function isArmour(item) {
+  return item.plate > 0 || ARMOUR_WORDS.test(item.section) || ARMOUR_WORDS.test(item.label);
 }

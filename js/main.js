@@ -4,12 +4,12 @@
 import { GARMENTS, GARMENT_LABEL, TEMPLATE, SHOWCASE } from "./config.js";
 import { loadCatalog, parseName } from "./catalog.js";
 import { Outfit } from "./outfit.js";
-import { outfitWarnings, plateCount, rankForPlates, PLATE } from "./rules.js";
+import { outfitWarnings, plateCount, rankForPlates, PLATE, RANK_PLATES, isArmour } from "./rules.js";
 import { loadImage, forgetImage, drawTemplate, drawShowcase, newCanvas, canvasBlob, layersZip, saveBlob } from "./render.js";
-import { itemSections, customSection, updateCounts, updateCustomPositions, branchButtons, loadError } from "./ui.js";
+import { itemSections, customSection, updateCounts, updateCustomPositions, branchButtons, filterList, loadError } from "./ui.js";
 
 const $ = id => document.getElementById(id);
-const view = { garment: "shirt", branch: null, skin: SHOWCASE.skinDefault };
+const view = { garment: "shirt", branch: null, skin: SHOWCASE.skinDefault, query: "", filter: "all" };
 const addMsg = { shirt: "", pants: "" };
 const templates = { shirt: newCanvas(), pants: newCanvas() };     // off-screen, for the showcase
 const images = new Map();                                          // src -> loaded image
@@ -127,6 +127,12 @@ function showStatus() {
   $("plate-meter").setAttribute("aria-valuenow", Math.min(plates, PLATE.full));
   $("plate-meter").classList.toggle("over", !rank);
   $("plate-fill").style.width = `${Math.min(plates / PLATE.full, 1) * 100}%`;
+  // The same numbers in the small bar pinned over the item list on phones.
+  document.querySelector(".mini-num").textContent = plates;
+  document.querySelector(".mini-word").textContent = plates === 1 ? "plate" : "plates";
+  document.querySelector(".mini-rank").textContent = rank || "Over max";
+  document.querySelector(".mini-track").classList.toggle("over", !rank);
+  document.querySelector(".mini-fill").style.width = $("plate-fill").style.width;
   $("warn").hidden = !messages.length;
   $("warn").textContent = messages.join(" ");
   const ids = new Set([...flagged].map(l => l.id));
@@ -165,6 +171,25 @@ function renderList() {
       $("mine").querySelector(".add-btn").focus();
     },
   }));
+  applyFilter();
+}
+
+// Search box and All / Armour / Clothing / Ticked only. Runs when the list is rebuilt or the filter changes,
+// not on every tick, so an item doesn't vanish under "Ticked only" the moment it's unticked.
+function applyFilter() {
+  const byId = new Map(catalog.garments[view.garment].items.map(l => [l.id, l]));
+  const q = view.query.trim().toLowerCase(), f = view.filter;
+  const filtering = !!q || f !== "all";
+  const shown = filterList($("list"), id => {
+    const l = byId.get(id);
+    if (!l) return true;
+    if (q && !`${l.label} ${l.tags.join(" ")}`.toLowerCase().includes(q)) return false;
+    if (f === "armour") return isArmour(l);
+    if (f === "clothing") return !isArmour(l);
+    if (f === "on") return outfit.isOn(l);
+    return true;
+  }, filtering);
+  $("no-match").hidden = !(filtering && shown === 0);
 }
 
 async function addCustom(g, files) {
@@ -208,6 +233,20 @@ function setBranch(b, { defaults = false } = {}) {
 }
 
 document.querySelectorAll(".switch button").forEach(b => b.addEventListener("click", () => setGarment(b.dataset.file)));
+
+$("search").addEventListener("input", e => { view.query = e.target.value; if (outfit) applyFilter(); });
+document.querySelectorAll(".filters button").forEach(b => b.addEventListener("click", () => {
+  view.filter = b.dataset.filter;
+  document.querySelectorAll(".filters button").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+  if (outfit) applyFilter();
+}));
+
+// Rank marks under the plate bar (LR3 at 4 plates … HR3 at 24).
+$("plate-ladder").replaceChildren(...RANK_PLATES.filter(([max]) => max > 0).map(([max, rank]) =>
+  Object.assign(document.createElement("span"), { textContent: rank, style: `left: ${max / PLATE.full * 100}%` })));
+
+// The pinned header's height, so the sticky preview column sits just under it.
+new ResizeObserver(() => document.documentElement.style.setProperty("--head-h", `${$("top").offsetHeight}px`)).observe($("top"));
 
 $("defaults").addEventListener("click", () => { if (!outfit) return; outfit.useDefaults(view.branch); renderList(); refresh(); });
 $("clear").addEventListener("click", () => { if (!outfit) return; outfit.clearItems(); renderList(); refresh(); });
