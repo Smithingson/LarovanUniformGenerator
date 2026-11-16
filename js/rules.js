@@ -30,7 +30,7 @@ export function branchesInUse(branchNames, items, isOn) {
 
 // Plate pieces in the outfit (Armour Guide v3). The shirt and pants versions of one armour share a piece key
 // and count once, at the higher value. Items without a value count 0.
-export const PLATE = { publicMax: 8, partial: 12, near: 18, full: 24 };
+export const PLATE = { full: 24 };
 export function plateCount(items, isOn) {
   const byPiece = new Map();
   let total = 0;
@@ -42,8 +42,11 @@ export function plateCount(items, isOn) {
   for (const v of byPiece.values()) total += v;
   return total;
 }
-export function harnessName(n) {
-  return n >= PLATE.full ? "full harness" : n >= PLATE.near ? "near harness" : n >= PLATE.partial ? "partial harness" : "";
+// City of Larova ranks by the most plate pieces each may wear (Armour Guide v3). MR2 allows 6, same as MR1.
+const RANK_PLATES = [[0, "LR1"], [4, "LR3"], [6, "MR1"], [10, "MR3"], [14, "HR1"], [20, "HR2"], [24, "HR3"]];
+export function rankForPlates(n) {
+  const r = RANK_PLATES.find(([max]) => n <= max);
+  return r ? r[1] : null;
 }
 
 // Two branches may share an outfit when either lists the other in canMixWith.

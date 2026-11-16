@@ -4,7 +4,7 @@
 import { GARMENTS, GARMENT_LABEL, TEMPLATE, SHOWCASE } from "./config.js";
 import { loadCatalog, parseName } from "./catalog.js";
 import { Outfit } from "./outfit.js";
-import { outfitWarnings, plateCount, harnessName, PLATE } from "./rules.js";
+import { outfitWarnings, plateCount, rankForPlates, PLATE } from "./rules.js";
 import { loadImage, forgetImage, drawTemplate, drawShowcase, newCanvas, canvasBlob, layersZip, saveBlob } from "./render.js";
 import { itemSections, customSection, updateCounts, updateCustomPositions, branchButtons, loadError } from "./ui.js";
 
@@ -118,11 +118,15 @@ function showStatus() {
     isOn,
   });
   // Plates across the whole outfit (shirt and pants, every branch); warn past the 24-piece maximum.
-  const plates = plateCount(GARMENTS.flatMap(x => catalog.garments[x].items), isOn), harness = harnessName(plates);
+  const plates = plateCount(GARMENTS.flatMap(x => catalog.garments[x].items), isOn), rank = rankForPlates(plates);
   if (plates > PLATE.full) messages.push(`This outfit has ${plates} plates. The most anyone can wear is ${PLATE.full} (a full harness).`);
-  $("count").innerHTML = `${n} item${n === 1 ? "" : "s"} on` +
-    ` · <span class="plates" title="Plate pieces in the whole outfit, counted by the Armour Guide v3. Over ${PLATE.publicMax} must be earned through rank or events.">${plates} plate${plates === 1 ? "" : "s"}${harness ? ` (${harness})` : ""}</span>` +
-    (messages.length ? `<span class="pill">Conflict</span>` : "");
+  $("count").innerHTML = `${n} item${n === 1 ? "" : "s"} on` + (messages.length ? `<span class="pill">Conflict</span>` : "");
+  $("plate-num").textContent = plates;
+  $("plate-word").textContent = plates === 1 ? "plate" : "plates";
+  $("plate-rank").textContent = rank || "Over max";
+  $("plate-meter").setAttribute("aria-valuenow", Math.min(plates, PLATE.full));
+  $("plate-meter").classList.toggle("over", !rank);
+  $("plate-fill").style.width = `${Math.min(plates / PLATE.full, 1) * 100}%`;
   $("warn").hidden = !messages.length;
   $("warn").textContent = messages.join(" ");
   const ids = new Set([...flagged].map(l => l.id));

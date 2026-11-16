@@ -150,7 +150,7 @@ test("the shipped layout and branch config agree", () => {
 });
 
 test("plate count: shirt and pants versions of one armour count once", async () => {
-  const { plateCount, harnessName } = await import("../js/rules.js");
+  const { plateCount, rankForPlates } = await import("../js/rules.js");
   const items = [
     { id: 1, plate: 4, piece: "A/coat" }, { id: 2, plate: 4, piece: "A/coat" },   // same coat of plates on shirt and pants
     { id: 3, plate: 2 }, { id: 4, plate: 1 }, { id: 5, plate: 0 },
@@ -161,7 +161,8 @@ test("plate count: shirt and pants versions of one armour count once", async () 
   assert.equal(plateCount(items, on([2, 6])), 4);
   assert.equal(plateCount(items, on([6, 7])), 1);
   assert.equal(plateCount(items, on([])), 0);
-  assert.deepEqual([8, 12, 18, 24, 30].map(harnessName), ["", "partial harness", "near harness", "full harness", "full harness"]);
+  assert.deepEqual([0, 1, 4, 5, 6, 7, 10, 11, 14, 15, 20, 21, 24, 25].map(rankForPlates),
+    ["LR1", "LR3", "LR3", "MR1", "MR1", "MR3", "MR3", "HR1", "HR1", "HR2", "HR2", "HR3", "HR3", null]);
 });
 
 test("every plate value in the layout is a whole or half piece", () => {
