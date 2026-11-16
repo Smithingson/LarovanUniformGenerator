@@ -284,20 +284,20 @@
         {"name":"Two-tone Shirt","group":"da-shirt"}
       ]},
       {"section":"ARMOR", "items": [
-        {"name":"Pinkscale Reinforced Jerkin","group":"da-jerkin","plate":4,"piece":"jerkin"},
-        {"name":"Pinkskin Reinforced Jerkin without Pauldrons","group":"da-jerkin","default":true,"plate":2,"piece":"jerkin"},
+        {"name":"Pinkscale Reinforced Jerkin","group":"da-jerkin","piece":"jerkin"},
+        {"name":"Pinkskin Reinforced Jerkin without Pauldrons","group":"da-jerkin","default":true,"piece":"jerkin"},
         {"name":"[LR3+] Painted Pink Scale Vambracers","default":true,"plate":2},
-        {"name":"[MR+] Waxed Tin-bronze Alloy Gauntlets","group":"da-gauntlets","default":true,"plate":2},
+        {"name":"[MR+] Waxed Tin-bronze Alloy Gauntlets","group":"da-gauntlets","plate":2},
         {"name":"[MR+] Slightly Oxidized Tin-bronze Alloy Gauntlets","group":"da-gauntlets","plate":2},
-        {"name":"[HR+] Waxed Tin-bronze Rebracers","group":"da-rebracers","default":true,"plate":2},
+        {"name":"[HR+] Waxed Tin-bronze Rebracers","group":"da-rebracers","plate":2},
         {"name":"[HR+] Slightly Oxidized Tin-bronze Rebracers","group":"da-rebracers","plate":2},
-        {"name":"[MR+] Waxed Tin-bronze Alloy Couters","group":"da-couters","default":true,"plate":2},
+        {"name":"[MR+] Waxed Tin-bronze Alloy Couters","group":"da-couters","plate":2},
         {"name":"[MR+] Slightly Oxidized Tin-bronze Alloy Couters","group":"da-couters","plate":2},
-        {"name":"[MR+] Waxed Tin-bronze Alloy Spauldors","group":"da-spauldors","default":true,"plate":2},
+        {"name":"[MR+] Waxed Tin-bronze Alloy Spauldors","group":"da-spauldors","plate":2},
         {"name":"[MR+] Slightly Oxidized Tin-Bronze Alloy Spauldors","group":"da-spauldors","plate":2},
-        {"name":"[MR3+] Tin-bronze Plated Chainmail","group":"da-chainmail","default":true,"plate":0,"piece":"plated-chainmail"},
+        {"name":"[MR3+] Tin-bronze Plated Chainmail","group":"da-chainmail","plate":0,"piece":"plated-chainmail"},
         {"name":"[MR3+] Oxidized Tin-bronze Plated Chainmail","group":"da-chainmail","plate":0,"piece":"plated-chainmail"},
-        {"name":"[HR+] Waxed Tin-bronze Pauldrons","group":"da-pauldrons","default":true,"plate":2},
+        {"name":"[HR+] Waxed Tin-bronze Pauldrons","group":"da-pauldrons","plate":2},
         {"name":"[HR+] Slightly Oxidized Tin-bronze Pauldrons","group":"da-pauldrons","plate":2}
       ]},
       {"section":"OVERWEAR⁄BELTS⁄SASHES", "items": [
@@ -305,7 +305,7 @@
         {"name":"[HR+] Tailored Captain's Gilet","group":"da-vest","default":true},
         {"name":"BELT WRINKLE","default":true},
         {"name":"Yellow Sash","default":true},
-        {"name":"[LR3+] Painted Pinkscale Gorget","default":true,"plate":1}
+        {"name":"[LR3+] Painted Pinkscale Gorget","plate":1}
       ]}
     ],
     "pants": [
@@ -345,13 +345,13 @@
         {"name":"Blue-Yellow Ptripped Puttees","group":"da-bloused"}
       ]},
       {"section":"ARMOR", "items": [
-        {"name":"[MR+] Painted Pinkscale Greaves","default":true,"plate":2},
-        {"name":"[HR+] Waxed Tin-bronze Alloy Cuisses","group":"da-cuisses","default":true,"plate":2},
+        {"name":"[MR+] Painted Pinkscale Greaves","plate":2},
+        {"name":"[HR+] Waxed Tin-bronze Alloy Cuisses","group":"da-cuisses","plate":2},
         {"name":"[HR+] Slightly Oxidized Tin-bronze Alloy Cuisses","group":"da-cuisses","plate":2},
-        {"name":"[MR+] Waxed Tin-bronze Alloy Polyeons","group":"da-poleyons","default":true,"plate":2},
+        {"name":"[MR+] Waxed Tin-bronze Alloy Polyeons","group":"da-poleyons","plate":2},
         {"name":"[MR+] Slightly Oxidized Tin-Bronze Alloy Poleyons","group":"da-poleyons","plate":2},
         {"name":"Pinkscale Reinforced Leather Jerkin","default":true,"plate":0,"piece":"jerkin"},
-        {"name":"[MR3+] Tin-bronze Plated Chainmail","default":true,"plate":0,"piece":"plated-chainmail"}
+        {"name":"[MR3+] Tin-bronze Plated Chainmail","plate":0,"piece":"plated-chainmail"}
       ]},
       {"section":"BELTS⁄SASHES", "items": [
         {"name":"Reinforced Deck Vest","group":"da-vest"},
