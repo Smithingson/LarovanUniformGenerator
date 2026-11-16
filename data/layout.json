@@ -40,8 +40,8 @@
         {"name":"[MR3] Lamellar Vest","plate":2},
         {"name":"[MR3] Lamellar Tassets+","plate":2,"piece":"lamellar-tassets"},
         {"name":"[MR3] Auxilleries' Scalemail Vest+","plate":2,"piece":"scale-vest"},
-        {"name":"[⛊] Bannerman Coat of Plates [HR2+]","plate":4,"piece":"coat-of-plates"},
-        {"name":"[HR3] Plate Cuirass","plate":4}
+        {"name":"[⛊] Bannerman Coat of Plates [HR2+]","plate":1,"piece":"coat-of-plates"},
+        {"name":"[HR3] Plate Cuirass","plate":1}
       ]},
       {"section":"3. BELT, SASHES & BLOUSING", "items": [
         {"name":"Sapper Appron"},
@@ -123,7 +123,7 @@
         {"name":"[LR3] Simple Leather Pteruges"},
         {"name":"[MR3] Lamellar Tassets-","plate":2,"piece":"lamellar-tassets"},
         {"name":"[MR3] Auxilleries' Scalemail Vest-","plate":2,"piece":"scale-vest"},
-        {"name":"[HR2] Coat-of-Plates-","plate":4,"piece":"coat-of-plates"}
+        {"name":"[HR2] Coat-of-Plates-","plate":1,"piece":"coat-of-plates"}
       ]},
       {"section":"2. BELT & ACCESSORY DROPDOWNS", "items": [
         {"name":"Sapper Appron"},
@@ -193,7 +193,7 @@
         {"name":"[MR3] Pale Red Pteruges+","group":"cw-pteruges"},
         {"name":"[MR1] Triple-Disc Breastplate","group":"cw-bodyarmor","plate":1},
         {"name":"[MR2] Triple-Disc Breastplate","group":"cw-bodyarmor","plate":1},
-        {"name":"[MR3] Musculata Cuirass","group":"cw-bodyarmor","plate":4,"piece":"musculata"},
+        {"name":"[MR3] Musculata Cuirass","group":"cw-bodyarmor","plate":1,"piece":"musculata"},
         {"name":"[MR2] Hinterlands Scale Vest","group":"cw-bodyarmor","plate":2},
         {"name":"[LR3] Hamata Maille Collar [ALT]","group":"cw-collar"},
         {"name":"[LR3] Hamata Maille Collar","group":"cw-collar"},
@@ -242,7 +242,7 @@
         {"name":"[MR3] Pale Red Tassels-","group":"cw-tassels"},
         {"name":"[LR3] Brown Pteruges-","group":"cw-pteruges"},
         {"name":"MR3] Pale Red Pteruges-","group":"cw-pteruges"},
-        {"name":"[MR3] Musculata Cuirass-","plate":4,"piece":"musculata"}
+        {"name":"[MR3] Musculata Cuirass-","plate":1,"piece":"musculata"}
       ]},
       {"section":"2. BELT & SASH DROPDOWNS", "items": [
         {"name":"Baldric Belt-","default":true}
