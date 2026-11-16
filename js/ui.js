@@ -16,7 +16,10 @@ export function itemRow(item, { type = "checkbox", groupName, checked, onChange 
   input.addEventListener("change", () => onChange(input.checked));
   const thumb = el("span", { className: "thumb" }, el("img", { src: item.src, alt: "", loading: "lazy" }));
   const lbl = el("span", { className: "lbl" }, el("b", { textContent: item.label }));
-  if (item.tags.length) lbl.append(el("span", { className: "chips" }, ...item.tags.map(t => el("span", { className: "chip", textContent: t }))));
+  const chips = item.tags.map(t => el("span", { className: "chip", textContent: t }));
+  if (item.plate) chips.push(el("span", { className: "chip plate", textContent: `${item.plate} plate${item.plate === 1 ? "" : "s"}`,
+    title: "Armour pieces this counts as (Armour Guide v3)" }));
+  if (chips.length) lbl.append(el("span", { className: "chips" }, ...chips));
   if (item.rule) lbl.append(el("span", { className: "note", textContent: `Not with ${titleCase(item.rule)}` }));
   if (item.needs) lbl.append(el("span", { className: "note", textContent: `Only with the ${titleCase(item.needs)}` }));
   const row = el("label", { className: "row" }, input, thumb, lbl);

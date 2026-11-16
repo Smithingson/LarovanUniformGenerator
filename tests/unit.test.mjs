@@ -148,3 +148,24 @@ test("the shipped layout and branch config agree", () => {
     }
   }
 });
+
+test("plate count: shirt and pants versions of one armour count once", async () => {
+  const { plateCount, harnessName } = await import("../js/rules.js");
+  const items = [
+    { id: 1, plate: 4, piece: "A/coat" }, { id: 2, plate: 4, piece: "A/coat" },   // same coat of plates on shirt and pants
+    { id: 3, plate: 2 }, { id: 4, plate: 1 }, { id: 5, plate: 0 },
+    { id: 6, plate: 0, piece: "A/hauberk" }, { id: 7, plate: 1, piece: "A/hauberk" }, // short + long hauberk: the long one's +1
+  ];
+  const on = ids => l => ids.includes(l.id);
+  assert.equal(plateCount(items, on([1, 2, 3, 4, 5])), 7);
+  assert.equal(plateCount(items, on([2, 6])), 4);
+  assert.equal(plateCount(items, on([6, 7])), 1);
+  assert.equal(plateCount(items, on([])), 0);
+  assert.deepEqual([8, 12, 18, 24, 30].map(harnessName), ["", "partial harness", "near harness", "full harness", "full harness"]);
+});
+
+test("every plate value in the layout is a whole or half piece", () => {
+  const lay = JSON.parse(fs.readFileSync(new URL("../data/layout.json", import.meta.url)));
+  for (const [b, g] of Object.entries(lay)) for (const secs of Object.values(g)) for (const s of secs) for (const it of s.items)
+    if ("plate" in it) assert.ok(Number.isInteger(it.plate * 2) && it.plate >= 0 && it.plate <= 24, `${b} ${it.name}: ${it.plate}`);
+});

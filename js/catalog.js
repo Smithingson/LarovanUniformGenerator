@@ -30,7 +30,9 @@ const key = (section, name) => `${section.trim().toLowerCase()}\u0000${name.trim
  * }}
  * Garment = { items: Item[] (every branch, drawing order), sections: Section[] }
  * Section = { branch, name, notes: string[], items: Item[] (bottom to top) }
- * Item    = { id, branch, garment, section, name, label, tags, rule, needs, group, isDefault, src, x, y }
+ * Item    = { id, branch, garment, section, name, label, tags, rule, needs, group, isDefault, plate, piece, src, x, y }
+ *           plate: armour pieces it counts as (Armour Guide v3); piece: shared by the shirt and pants versions
+ *           of the same armour, which count once
  *           group is unique per branch and garment ("Ingeld/gambeson"); null when the item isn't in a pick-one group.
  */
 export function buildCatalog(config, layout, uploads) {
@@ -45,6 +47,7 @@ export function buildCatalog(config, layout, uploads) {
       const item = (section, name, extra, file) => ({
         id: nextId++, branch, garment, section, name, ...parseName(name),
         group: extra.group ? `${branch}/${extra.group}` : null, isDefault: !!extra.default,
+        plate: extra.plate || 0, piece: extra.piece ? `${branch}/${extra.piece}` : null,
         src: file.src, x: file.x, y: file.y,
       });
       const own = (layout[branch]?.[garment] || []).map(s => {

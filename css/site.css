@@ -112,6 +112,8 @@ canvas { display: block; width: 100%; height: auto; max-width: 100%; aspect-rati
 .lbl b { font-weight: 500; overflow-wrap: anywhere; }
 .chips { display: flex; flex-wrap: wrap; gap: 4px; }
 .chip { font: 500 11px/1.5 var(--mono); padding: 0 6px; border-radius: 3px; border: 1px solid var(--line); color: var(--muted); }
+.chip.plate { border-color: var(--gold); color: var(--gold); }
+.plates { color: var(--gold); }
 .note { font-size: 12.5px; color: var(--warn); }
 
 footer { margin-top: 28px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }

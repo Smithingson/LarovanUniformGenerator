@@ -28,6 +28,24 @@ export function branchesInUse(branchNames, items, isOn) {
   return branchNames.filter(b => used.has(b));
 }
 
+// Plate pieces in the outfit (Armour Guide v3). The shirt and pants versions of one armour share a piece key
+// and count once, at the higher value. Items without a value count 0.
+export const PLATE = { publicMax: 8, partial: 12, near: 18, full: 24 };
+export function plateCount(items, isOn) {
+  const byPiece = new Map();
+  let total = 0;
+  for (const l of items) {
+    if (!l.plate || !isOn(l)) continue;
+    if (!l.piece) { total += l.plate; continue; }
+    byPiece.set(l.piece, Math.max(byPiece.get(l.piece) || 0, l.plate));
+  }
+  for (const v of byPiece.values()) total += v;
+  return total;
+}
+export function harnessName(n) {
+  return n >= PLATE.full ? "full harness" : n >= PLATE.near ? "near harness" : n >= PLATE.partial ? "partial harness" : "";
+}
+
 // Two branches may share an outfit when either lists the other in canMixWith.
 const listOf = names => names.length < 3 ? names.join(" and ") : `${names.slice(0, -1).join(", ")} and ${names.at(-1)}`;
 const mixable = (a, b) => a.name === b.name || a.canMixWith.includes(b.name) || b.canMixWith.includes(a.name);
