@@ -18,6 +18,12 @@ const branchOf = name => catalog.branches.find(b => b.name === name);
 const fileName = kind => `${view.branch} ${kind}.png`;
 
 // ---- Loading -------------------------------------------------------------------------------------------
+// Only what the first screen needs loads before the page is ready: the branch's frames and showcase card and
+// the ticked items. Other images load when they're needed (a tick, another branch), and the current branch's
+// items load quietly in the background. The item list uses small thumbnails.
+
+const failed = new Set();          // images that couldn't load
+const brokenItems = [];            // names of items dropped because their image failed
 
 async function start() {
   ready = false;
@@ -39,38 +45,55 @@ async function start() {
   outfit = new Outfit(catalog);
   $("branches").replaceChildren(...branchButtons(catalog.branches, setBranch));
   setBranch(catalog.branches[0].name, { defaults: true });
-
-  // Every item image, frame and showcase card. A missing item is dropped (and reported) instead of
-  // blocking the page; a missing frame or card is reported and skipped.
-  const srcs = [...new Set([
-    ...GARMENTS.flatMap(g => catalog.garments[g].items.map(l => l.src)),
-    ...catalog.branches.flatMap(b => [b.showcase, ...GARMENTS.map(g => b.frame[g])]),
-  ])];
-  const loaded = await Promise.all(srcs.map(loadImage));
-  srcs.forEach((src, i) => loaded[i] && images.set(src, loaded[i]));
-  const broken = dropBrokenItems();
-  const brokenArt = catalog.branches.flatMap(b => [[b.showcase, `${b.name} showcase card`], ...GARMENTS.map(g => [b.frame[g], `${b.name} ${g} frame`])])
-    .filter(([src]) => !images.has(src)).map(([, what]) => what);
-  showNotice([
-    broken.length ? `${broken.length} item${broken.length === 1 ? "" : "s"} couldn't load and ${broken.length === 1 ? "is" : "are"} hidden: ${broken.join(", ")}.` : "",
-    brokenArt.length ? `Couldn't load the ${brokenArt.join(", ")}.` : "",
-  ].filter(Boolean).join(" ") + (broken.length || brokenArt.length ? " Reload the page to try again." : ""));
-
+  await ensure(needed());
   ready = true;
-  renderList();
-  refresh();
+  if (!dropBrokenItems()) renderList();
+  await refresh();
   setDownloads(true);
+  prefetch();
 }
 
+// Everything drawing needs right now: the branch's frames and card, and every ticked layer of both garments.
+function needed() {
+  const b = branchOf(view.branch);
+  return [b.showcase, ...GARMENTS.map(g => b.frame[g]), ...GARMENTS.flatMap(g => outfit.stack(g, view.branch).map(l => l.src))];
+}
+const allLoaded = () => needed().every(s => images.has(s) || failed.has(s));
+
+async function ensure(srcs) {
+  const missing = [...new Set(srcs)].filter(s => s && !images.has(s) && !failed.has(s));
+  if (!missing.length) return;
+  const loaded = await Promise.all(missing.map(loadImage));
+  missing.forEach((s, i) => loaded[i] ? images.set(s, loaded[i]) : failed.add(s));
+}
+
+// The rest of this branch's items for this garment, a few at a time, so ticking them is instant.
+let prefetchRun = 0;
+async function prefetch() {
+  const run = ++prefetchRun, g = view.garment;
+  const todo = catalog.garments[g].items.filter(l => l.branch === view.branch && !images.has(l.src) && !failed.has(l.src)).map(l => l.src);
+  for (let i = 0; i < todo.length && run === prefetchRun; i += 4) await ensure(todo.slice(i, i + 4));
+}
+
+// Items whose image failed are unticked and hidden, and reported. Returns true if the list was redrawn.
 function dropBrokenItems() {
-  const names = [];
+  let dropped = false;
   for (const g of GARMENTS) {
     const gar = catalog.garments[g];
-    for (const l of gar.items) if (!images.has(l.src)) { names.push(l.label); outfit.on[g].delete(l.id); }
-    gar.items = gar.items.filter(l => images.has(l.src));
-    for (const s of gar.sections) s.items = s.items.filter(l => images.has(l.src));
+    for (const l of gar.items) if (failed.has(l.src)) { brokenItems.push(l.label); outfit.on[g].delete(l.id); dropped = true; }
+    if (!dropped) continue;
+    gar.items = gar.items.filter(l => !failed.has(l.src));
+    for (const s of gar.sections) s.items = s.items.filter(l => !failed.has(l.src));
   }
-  return names;
+  const brokenArt = catalog.branches.flatMap(b => [[b.showcase, `${b.name} showcase card`], ...GARMENTS.map(g => [b.frame[g], `${b.name} ${g} frame`])])
+    .filter(([src]) => failed.has(src)).map(([, what]) => what);
+  const n = brokenItems.length;
+  showNotice([
+    n ? `${n} item${n === 1 ? "" : "s"} couldn't load and ${n === 1 ? "is" : "are"} hidden: ${brokenItems.join(", ")}.` : "",
+    brokenArt.length ? `Couldn't load the ${brokenArt.join(", ")}.` : "",
+  ].filter(Boolean).join(" ") + (n || brokenArt.length ? " Reload the page to try again." : ""));
+  if (dropped) renderList();
+  return dropped;
 }
 
 function showNotice(text) {
@@ -88,19 +111,31 @@ function setDownloads(on) {
 
 const frameImage = g => images.get(branchOf(view.branch).frame[g]);
 
-function refresh() {
+// Counts and warnings update at once; the preview and showcase redraw once their images are in.
+// The returned promise resolves after that redraw, so downloads can wait for it.
+async function refresh() {
   if (!ready) return;
-  const g = view.garment, stack = outfit.stack(g, view.branch);
-  drawTemplate($("out"), stack, images, frameImage(g));
-  $("save").disabled = !frameImage(g);           // never hand out a template without its frame
+  const g = view.garment;
   showStatus();
   updateCounts(document, id => outfit.on[g].has(id));
-  updateCustomPositions($("mine"), stack);
+  updateCustomPositions($("mine"), outfit.stack(g, view.branch));
+  if (!allLoaded()) {
+    await ensure(needed());
+    dropBrokenItems();
+  }
+  draw();
+}
+
+function draw() {
+  if (!ready || !allLoaded()) return;          // a later refresh draws once the rest is in
+  const g = view.garment;
+  drawTemplate($("out"), outfit.stack(g, view.branch), images, frameImage(g));
+  $("save").disabled = !frameImage(g);           // never hand out a template without its frame
   showShowcase();
 }
 
 function showShowcase() {
-  if (!ready) return;
+  if (!ready || !allLoaded()) return;
   const card = images.get(branchOf(view.branch).showcase);
   $("save-sc").disabled = !card;
   if (!card) { $("sc").getContext("2d").clearRect(0, 0, SHOWCASE.w, SHOWCASE.h); return; }
@@ -219,6 +254,7 @@ function setGarment(g) {
   if (!outfit) return;
   renderList();
   refresh();
+  if (ready) prefetch();
 }
 
 // Switching branch shows its items and frame; ticked items stay ticked (one shared outfit).
@@ -230,6 +266,7 @@ function setBranch(b, { defaults = false } = {}) {
   if (defaults) outfit.useDefaults(b);
   renderList();
   refresh();
+  if (ready) prefetch();
 }
 
 document.querySelectorAll(".switch button").forEach(b => b.addEventListener("click", () => setGarment(b.dataset.file)));
@@ -259,18 +296,19 @@ $("skin").addEventListener("input", e => {
 });
 
 $("save").addEventListener("click", async () => {
-  refresh();
+  await refresh();
   saveBlob(await canvasBlob($("out")), fileName(GARMENT_LABEL[view.garment]));
 });
 
 $("save-sc").addEventListener("click", async () => {
-  showShowcase();
+  await refresh();
   saveBlob(await canvasBlob($("sc")), fileName("Showcase"));
 });
 
 // Ticked items (not the frame) as full-size PNGs in a .zip, numbered from the bottom layer (01) up.
 $("save-layers").addEventListener("click", async () => {
   const msg = $("msg"), btn = $("save-layers"), g = view.garment;
+  await refresh();
   const layers = outfit.stack(g, view.branch);
   msg.hidden = true;
   if (!layers.length) { msg.hidden = false; msg.textContent = "Tick at least one item to download its layers."; return; }

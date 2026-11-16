@@ -1,7 +1,8 @@
 """Pull creator-uploaded layer PNGs from the shared Google Drive folder into the site build.
 
 Drive layout:  <root>/<Branch>/Shirt|Pants/<section folder>/<Item name>.png
-Output:        <site>/uploads/<branch>/<garment>/<n>.png (cropped) and <site>/uploads.json
+Output:        <site>/uploads/<branch>/<garment>/<n>.webp (cropped, lossless: same pixels as the PNG, smaller file),
+               <n>.thumb.webp (small picture for the item list) and <site>/uploads.json
 
 Usage: python scripts/sync_drive.py <site dir>
 Env:   GDRIVE_SA_KEY   service-account JSON key (if missing, no uploads are added)
@@ -80,6 +81,19 @@ def fetch_entries(session, root_id, skipped):
                     yield branch, garment, sec["name"].strip(), f["name"], int(f.get("size") or 0), load
 
 
+THUMB = 128   # longest side of the list picture; shown at 64px, so sharp on high-density screens
+
+
+def save_item(im, site, rel):
+    """Write the item (lossless WebP, every pixel kept exactly) and its list thumbnail; returns the thumbnail path."""
+    im.save(os.path.join(site, rel), "WEBP", lossless=True, exact=True, quality=100, method=4)
+    thumb = rel[:-len(".webp")] + ".thumb.webp"
+    t = im.copy()
+    t.thumbnail((THUMB, THUMB), Image.LANCZOS)
+    t.save(os.path.join(site, thumb), "WEBP", quality=80, method=4)
+    return thumb
+
+
 def build(entries, site, skipped):
     """Validate, crop and write uploads; returns the uploads.json structure."""
     result = {}
@@ -112,14 +126,14 @@ def build(entries, site, skipped):
         seen.add(key)
         x0, y0, x1, y1 = alpha.getbbox()
         n = counters.get((branch, garment), 0); counters[(branch, garment)] = n + 1
-        rel = f"uploads/{SLUG(branch)}/{garment}/{n}.png"
+        rel = f"uploads/{SLUG(branch)}/{garment}/{n}.webp"
         os.makedirs(os.path.join(site, "uploads", SLUG(branch), garment), exist_ok=True)
-        im.crop((x0, y0, x1, y1)).save(os.path.join(site, rel), optimize=True)
+        thumb = save_item(im.crop((x0, y0, x1, y1)), site, rel)
         sec = sections.get((branch, garment, section.lower()))
         if sec is None:
             sec = sections[(branch, garment, section.lower())] = {"section": section, "items": []}
             result.setdefault(branch, {g: [] for g in GARMENTS.values()})[garment].append(sec)
-        sec["items"].append({"name": name, "src": rel, "x": x0, "y": y0})
+        sec["items"].append({"name": name, "src": rel, "thumb": thumb, "x": x0, "y": y0})
     for gs in result.values():
         for secs in gs.values():
             secs.sort(key=lambda s: s["section"].lower())

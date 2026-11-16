@@ -38,8 +38,14 @@ class BuildTest(unittest.TestCase):
             cloak = items[1]
             self.assertEqual((cloak["x"], cloak["y"]), (10, 20))
             self.assertTrue(cloak["src"].startswith("uploads/city-watch/shirt/"))
-            with Image.open(Path(site) / cloak["src"]) as im:
+            src = png(box=(10, 20, 40, 60))
+            with Image.open(Path(site) / cloak["src"]) as im, Image.open(io.BytesIO(src)) as orig:
+                self.assertEqual(im.format, "WEBP")
                 self.assertEqual(im.size, (30, 40))
+                # lossless: exactly the pixels of the cropped PNG
+                self.assertEqual(im.convert("RGBA").tobytes(), orig.convert("RGBA").crop((10, 20, 40, 60)).tobytes())
+            with Image.open(Path(site) / cloak["thumb"]) as t:
+                self.assertLessEqual(max(t.size), sync_drive.THUMB)
 
     def test_bad_files_are_skipped_with_a_reason(self):
         with tempfile.TemporaryDirectory() as site:

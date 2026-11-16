@@ -14,7 +14,7 @@ export function itemRow(item, { type = "checkbox", groupName, checked, onChange 
   const input = el("input", { type, id: `L-${item.garment}-${item.id}`, checked });
   if (groupName) input.name = groupName;
   input.addEventListener("change", () => onChange(input.checked));
-  const thumb = el("span", { className: "thumb" }, el("img", { src: item.src, alt: "", loading: "lazy" }));
+  const thumb = el("span", { className: "thumb" }, el("img", { src: item.thumb || item.src, alt: "", loading: "lazy" }));
   const lbl = el("span", { className: "lbl" }, el("b", { textContent: item.label }));
   const chips = item.tags.map(t => el("span", { className: "chip", textContent: t }));
   if (item.plate) chips.push(el("span", { className: "chip plate", textContent: `${item.plate} plate${item.plate === 1 ? "" : "s"}`,

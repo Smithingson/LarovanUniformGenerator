@@ -15,7 +15,7 @@ const get = async url => {
 
 const json = await get(site + "uploads.json");
 const uploads = JSON.parse(json);
-const srcs = Object.values(uploads).flatMap(g => Object.values(g).flatMap(secs => secs.flatMap(s => s.items.map(i => i.src))));
+const srcs = Object.values(uploads).flatMap(g => Object.values(g).flatMap(secs => secs.flatMap(s => s.items.flatMap(i => [i.src, i.thumb].filter(Boolean)))));
 let done = 0;
 for (let i = 0; i < srcs.length; i += 16) {
   await Promise.all(srcs.slice(i, i + 16).map(async src => {
@@ -26,4 +26,4 @@ for (let i = 0; i < srcs.length; i += 16) {
   }));
 }
 fs.writeFileSync(path.join(dir, "uploads.json"), json);
-console.log(`Saved uploads.json and ${done} item images to ${path.resolve(dir)}`);
+console.log(`Saved uploads.json and ${done} item images and thumbnails to ${path.resolve(dir)}`);
