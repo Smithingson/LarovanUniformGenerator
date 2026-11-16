@@ -21,27 +21,27 @@
         {"name":"[MR3] Full Chainmail Haubergeon+","plate":1,"piece":"haubergeon"}
       ]},
       {"section":"6. LESSER ARM ARMOR", "items": [
-        {"name":"[MR3] Splinted Rebracers","plate":1},
-        {"name":"[LR3] Splinted Vambracers","plate":1},
-        {"name":"[LR3] Proto-splinted Bracers","plate":1},
-        {"name":"[⛊] Proto-couters [MR1+]","plate":1},
-        {"name":"[LR3] Fingerless Proto-Gauntlets","plate":1}
+        {"name":"[MR3] Splinted Rebracers","plate":2},
+        {"name":"[LR3] Splinted Vambracers","plate":2},
+        {"name":"[LR3] Proto-splinted Bracers","plate":2},
+        {"name":"[⛊] Proto-couters [MR1+]","plate":2},
+        {"name":"[LR3] Fingerless Proto-Gauntlets","plate":2}
       ]},
       {"section":"5. GREATER ARM ARMOR", "items": [
-        {"name":"[HR] Plate Rebracers","plate":1},
-        {"name":"[HR] Plate Vambracers","plate":1},
+        {"name":"[HR] Plate Rebracers","plate":2},
+        {"name":"[HR] Plate Vambracers","plate":2},
         {"name":"[LR3] Jackchains","plate":0},
-        {"name":"[LR3] Hourglass Gauntelts","default":true,"plate":1},
-        {"name":"[LR3] Plate Pauldrons","default":true,"plate":1},
-        {"name":"[HR2] Plate Couters","plate":1}
+        {"name":"[LR3] Hourglass Gauntelts","default":true,"plate":2},
+        {"name":"[LR3] Plate Pauldrons","default":true,"plate":2},
+        {"name":"[HR2] Plate Couters","plate":2}
       ]},
       {"section":"4. CHEST ARMOR & ACCESSORIES", "items": [
         {"name":"[LR3] Simple Leather Pteruges"},
-        {"name":"[MR3] Lamellar Vest","plate":1},
-        {"name":"[MR3] Lamellar Tassets+","plate":1,"piece":"lamellar-tassets"},
-        {"name":"[MR3] Auxilleries' Scalemail Vest+","plate":1,"piece":"scale-vest"},
-        {"name":"[⛊] Bannerman Coat of Plates [HR2+]","plate":1,"piece":"coat-of-plates"},
-        {"name":"[HR3] Plate Cuirass","plate":1}
+        {"name":"[MR3] Lamellar Vest","plate":2},
+        {"name":"[MR3] Lamellar Tassets+","plate":2,"piece":"lamellar-tassets"},
+        {"name":"[MR3] Auxilleries' Scalemail Vest+","plate":2,"piece":"scale-vest"},
+        {"name":"[⛊] Bannerman Coat of Plates [HR2+]","plate":4,"piece":"coat-of-plates"},
+        {"name":"[HR3] Plate Cuirass","plate":4}
       ]},
       {"section":"3. BELT, SASHES & BLOUSING", "items": [
         {"name":"Sapper Appron"},
@@ -108,22 +108,22 @@
         {"name":"[LR2] Ingeld Gambeson 3","group":"gambeson"}
       ]},
       {"section":"4. LESSER LEG ARMOR", "items": [
-        {"name":"[LR3] Proto-splinted Greaves","plate":1},
-        {"name":"[MR1] Leather Scale Cuisses","plate":1},
+        {"name":"[LR3] Proto-splinted Greaves","plate":2},
+        {"name":"[MR1] Leather Scale Cuisses","plate":2},
         {"name":"[LR3] Padded Chausse"},
         {"name":"[MR3] Chaunmail Chausse"}
       ]},
       {"section":"3. GREATER LEG ARMOR", "items": [
-        {"name":"[HR3] Plate Cuisses","plate":1},
-        {"name":"[HR1] Plate Greaves","plate":1},
-        {"name":"[MR3] Plate Poleyons","plate":1}
+        {"name":"[HR3] Plate Cuisses","plate":2},
+        {"name":"[HR1] Plate Greaves","plate":2},
+        {"name":"[MR3] Plate Poleyons","plate":2}
       ]},
       {"section":"2. CHEST & CHAINMAIL ARMOR", "items": [
         {"name":"[MR1-3] Chainmail Haubergeon-","plate":0,"piece":"haubergeon"},
         {"name":"[LR3] Simple Leather Pteruges"},
-        {"name":"[MR3] Lamellar Tassets-","plate":1,"piece":"lamellar-tassets"},
-        {"name":"[MR3] Auxilleries' Scalemail Vest-","plate":1,"piece":"scale-vest"},
-        {"name":"[HR2] Coat-of-Plates-","plate":1,"piece":"coat-of-plates"}
+        {"name":"[MR3] Lamellar Tassets-","plate":2,"piece":"lamellar-tassets"},
+        {"name":"[MR3] Auxilleries' Scalemail Vest-","plate":2,"piece":"scale-vest"},
+        {"name":"[HR2] Coat-of-Plates-","plate":4,"piece":"coat-of-plates"}
       ]},
       {"section":"2. BELT & ACCESSORY DROPDOWNS", "items": [
         {"name":"Sapper Appron"},
@@ -155,9 +155,9 @@
       ]},
       {"section":"9. LESSER ARMOR", "items": [
         {"name":"[MR3] Full Maille Sleeves"},
-        {"name":"[MR1] Dendra Panoply Vambracers","plate":1},
-        {"name":"[HR1] Dendra Panoply Rebracers","plate":1},
-        {"name":"[MR3] Dendra Panoply Gauntlets","plate":1}
+        {"name":"[MR1] Dendra Panoply Vambracers","plate":2},
+        {"name":"[HR1] Dendra Panoply Rebracers","plate":2},
+        {"name":"[MR3] Dendra Panoply Gauntlets","plate":2}
       ]},
       {"section":"8. LINEN TUNICS", "items": [
         {"name":"Plain Linen Tunic","group":"cw-linen"},
@@ -175,26 +175,26 @@
         {"name":"[MR3] Pale Red Shoulder Pturges","group":"cw-shpteruges"},
         {"name":"[LR3] Maille Hamata+","group":"cw-hamata"},
         {"name":"[LR3] Maille Hamata+ [ALT]","group":"cw-hamata"},
-        {"name":"[MR3] Dendra Pauldrons","plate":1}
+        {"name":"[MR3] Dendra Pauldrons","plate":2}
       ]},
       {"section":"4. CHEST ARMOR & ACCESSORIES","notes":["THE SCALES ON THE 'SCALED LINOTHORAX' ARE DECORATIVE. THEY HAVE NO ADDITIONAL PROTECTION"], "items": [
         {"name":"[LR2] Linothorax+ (YELLOW)","group":"cw-linothorax","plate":0,"piece":"linothorax"},
         {"name":"[LR2] Linothorax+ (BLUE)","group":"cw-linothorax","default":true,"plate":0,"piece":"linothorax"},
         {"name":"[LR2] Linothorax w⁄ Hamata Collar+ (YELLOW)","group":"cw-linothorax","plate":0,"piece":"linothorax"},
         {"name":"[LR2] Linothorax 2⁄ Hamata Collar+ (BLUE)","group":"cw-linothorax","plate":0,"piece":"linothorax"},
-        {"name":"[LR2] Scaled Linothorax+ (YELLOW)","group":"cw-linothorax","plate":1,"piece":"linothorax"},
-        {"name":"[LR2] Scaled Linothorax+ (BLUE)","group":"cw-linothorax","plate":1,"piece":"linothorax"},
-        {"name":"[LR2] Scaled Linothorax w⁄ Hamata Collar+ (YELLOW)","group":"cw-linothorax","plate":1,"piece":"linothorax"},
-        {"name":"[LR2] Scaled Linothorax w⁄ Hamata Collar+ (BLUE)","group":"cw-linothorax","plate":1,"piece":"linothorax"},
-        {"name":"[LR2] Scaled Linothorax w⁄ Hamata Collar+ (BLUE) [ALT]","group":"cw-linothorax","plate":1,"piece":"linothorax"},
+        {"name":"[LR2] Scaled Linothorax+ (YELLOW)","group":"cw-linothorax","plate":2,"piece":"linothorax"},
+        {"name":"[LR2] Scaled Linothorax+ (BLUE)","group":"cw-linothorax","plate":2,"piece":"linothorax"},
+        {"name":"[LR2] Scaled Linothorax w⁄ Hamata Collar+ (YELLOW)","group":"cw-linothorax","plate":2,"piece":"linothorax"},
+        {"name":"[LR2] Scaled Linothorax w⁄ Hamata Collar+ (BLUE)","group":"cw-linothorax","plate":2,"piece":"linothorax"},
+        {"name":"[LR2] Scaled Linothorax w⁄ Hamata Collar+ (BLUE) [ALT]","group":"cw-linothorax","plate":2,"piece":"linothorax"},
         {"name":"[LR3] Brown Tassels+","group":"cw-tassels"},
         {"name":"[MR3] Pale Red Tassels+","group":"cw-tassels"},
         {"name":"[LR3] Brown Pteruges+","group":"cw-pteruges"},
         {"name":"[MR3] Pale Red Pteruges+","group":"cw-pteruges"},
         {"name":"[MR1] Triple-Disc Breastplate","group":"cw-bodyarmor","plate":1},
         {"name":"[MR2] Triple-Disc Breastplate","group":"cw-bodyarmor","plate":1},
-        {"name":"[MR3] Musculata Cuirass","group":"cw-bodyarmor","plate":1,"piece":"musculata"},
-        {"name":"[MR2] Hinterlands Scale Vest","group":"cw-bodyarmor","plate":1},
+        {"name":"[MR3] Musculata Cuirass","group":"cw-bodyarmor","plate":4,"piece":"musculata"},
+        {"name":"[MR2] Hinterlands Scale Vest","group":"cw-bodyarmor","plate":2},
         {"name":"[LR3] Hamata Maille Collar [ALT]","group":"cw-collar"},
         {"name":"[LR3] Hamata Maille Collar","group":"cw-collar"},
         {"name":"[HR2] Dendra Panoply Besagews","plate":1},
@@ -222,7 +222,7 @@
         {"name":"Caligae","group":"cw-caligae"}
       ]},
       {"section":"6. LESSER LEG ARMOR", "items": [
-        {"name":"[MR2] Dendra Panoply Greaves","plate":1},
+        {"name":"[MR2] Dendra Panoply Greaves","plate":2},
         {"name":"[HR] Maille w⁄ Rondel Poleyns","plate":1}
       ]},
       {"section":"4. GARMENT DROPDOWNS", "items": [
@@ -242,7 +242,7 @@
         {"name":"[MR3] Pale Red Tassels-","group":"cw-tassels"},
         {"name":"[LR3] Brown Pteruges-","group":"cw-pteruges"},
         {"name":"MR3] Pale Red Pteruges-","group":"cw-pteruges"},
-        {"name":"[MR3] Musculata Cuirass-","plate":1,"piece":"musculata"}
+        {"name":"[MR3] Musculata Cuirass-","plate":4,"piece":"musculata"}
       ]},
       {"section":"2. BELT & SASH DROPDOWNS", "items": [
         {"name":"Baldric Belt-","default":true}
@@ -284,21 +284,21 @@
         {"name":"Two-tone Shirt","group":"da-shirt"}
       ]},
       {"section":"ARMOR", "items": [
-        {"name":"Pinkscale Reinforced Jerkin","group":"da-jerkin","plate":1,"piece":"jerkin"},
-        {"name":"Pinkskin Reinforced Jerkin without Pauldrons","group":"da-jerkin","default":true,"plate":1,"piece":"jerkin"},
-        {"name":"[LR3+] Painted Pink Scale Vambracers","default":true,"plate":1},
-        {"name":"[MR+] Waxed Tin-bronze Alloy Gauntlets","group":"da-gauntlets","default":true,"plate":1},
-        {"name":"[MR+] Slightly Oxidized Tin-bronze Alloy Gauntlets","group":"da-gauntlets","plate":1},
-        {"name":"[HR+] Waxed Tin-bronze Rebracers","group":"da-rebracers","default":true,"plate":1},
-        {"name":"[HR+] Slightly Oxidized Tin-bronze Rebracers","group":"da-rebracers","plate":1},
-        {"name":"[MR+] Waxed Tin-bronze Alloy Couters","group":"da-couters","default":true,"plate":1},
-        {"name":"[MR+] Slightly Oxidized Tin-bronze Alloy Couters","group":"da-couters","plate":1},
-        {"name":"[MR+] Waxed Tin-bronze Alloy Spauldors","group":"da-spauldors","default":true,"plate":1},
-        {"name":"[MR+] Slightly Oxidized Tin-Bronze Alloy Spauldors","group":"da-spauldors","plate":1},
+        {"name":"Pinkscale Reinforced Jerkin","group":"da-jerkin","plate":4,"piece":"jerkin"},
+        {"name":"Pinkskin Reinforced Jerkin without Pauldrons","group":"da-jerkin","default":true,"plate":2,"piece":"jerkin"},
+        {"name":"[LR3+] Painted Pink Scale Vambracers","default":true,"plate":2},
+        {"name":"[MR+] Waxed Tin-bronze Alloy Gauntlets","group":"da-gauntlets","default":true,"plate":2},
+        {"name":"[MR+] Slightly Oxidized Tin-bronze Alloy Gauntlets","group":"da-gauntlets","plate":2},
+        {"name":"[HR+] Waxed Tin-bronze Rebracers","group":"da-rebracers","default":true,"plate":2},
+        {"name":"[HR+] Slightly Oxidized Tin-bronze Rebracers","group":"da-rebracers","plate":2},
+        {"name":"[MR+] Waxed Tin-bronze Alloy Couters","group":"da-couters","default":true,"plate":2},
+        {"name":"[MR+] Slightly Oxidized Tin-bronze Alloy Couters","group":"da-couters","plate":2},
+        {"name":"[MR+] Waxed Tin-bronze Alloy Spauldors","group":"da-spauldors","default":true,"plate":2},
+        {"name":"[MR+] Slightly Oxidized Tin-Bronze Alloy Spauldors","group":"da-spauldors","plate":2},
         {"name":"[MR3+] Tin-bronze Plated Chainmail","group":"da-chainmail","default":true,"plate":0,"piece":"plated-chainmail"},
         {"name":"[MR3+] Oxidized Tin-bronze Plated Chainmail","group":"da-chainmail","plate":0,"piece":"plated-chainmail"},
-        {"name":"[HR+] Waxed Tin-bronze Pauldrons","group":"da-pauldrons","default":true,"plate":1},
-        {"name":"[HR+] Slightly Oxidized Tin-bronze Pauldrons","group":"da-pauldrons","plate":1}
+        {"name":"[HR+] Waxed Tin-bronze Pauldrons","group":"da-pauldrons","default":true,"plate":2},
+        {"name":"[HR+] Slightly Oxidized Tin-bronze Pauldrons","group":"da-pauldrons","plate":2}
       ]},
       {"section":"OVERWEAR⁄BELTS⁄SASHES", "items": [
         {"name":"Reinforced Deck Vest","group":"da-vest"},
@@ -345,11 +345,11 @@
         {"name":"Blue-Yellow Ptripped Puttees","group":"da-bloused"}
       ]},
       {"section":"ARMOR", "items": [
-        {"name":"[MR+] Painted Pinkscale Greaves","default":true,"plate":1},
-        {"name":"[HR+] Waxed Tin-bronze Alloy Cuisses","group":"da-cuisses","default":true,"plate":1},
-        {"name":"[HR+] Slightly Oxidized Tin-bronze Alloy Cuisses","group":"da-cuisses","plate":1},
-        {"name":"[MR+] Waxed Tin-bronze Alloy Polyeons","group":"da-poleyons","default":true,"plate":1},
-        {"name":"[MR+] Slightly Oxidized Tin-Bronze Alloy Poleyons","group":"da-poleyons","plate":1},
+        {"name":"[MR+] Painted Pinkscale Greaves","default":true,"plate":2},
+        {"name":"[HR+] Waxed Tin-bronze Alloy Cuisses","group":"da-cuisses","default":true,"plate":2},
+        {"name":"[HR+] Slightly Oxidized Tin-bronze Alloy Cuisses","group":"da-cuisses","plate":2},
+        {"name":"[MR+] Waxed Tin-bronze Alloy Polyeons","group":"da-poleyons","default":true,"plate":2},
+        {"name":"[MR+] Slightly Oxidized Tin-Bronze Alloy Poleyons","group":"da-poleyons","plate":2},
         {"name":"Pinkscale Reinforced Leather Jerkin","default":true,"plate":0,"piece":"jerkin"},
         {"name":"[MR3+] Tin-bronze Plated Chainmail","default":true,"plate":0,"piece":"plated-chainmail"}
       ]},
@@ -382,7 +382,7 @@
       {"section":"4. LESSER ARMOR", "items": [
         {"name":"[MR3+] Chainmail Hauberk Sleeves"},
         {"name":"[MR3+] Chainmail Sleeve Bedazzlements"},
-        {"name":"[MR2+] Splinted Vambraces","plate":1},
+        {"name":"[MR2+] Splinted Vambraces","plate":2},
         {"name":"[LR3+] Chainmail Hauberk Short","default":true},
         {"name":"[MR+] Chainmail Bedazzlements"},
         {"name":"[LR2+] Rondels","plate":1},
@@ -400,7 +400,7 @@
         {"name":"[HR+] Mirror Armor Chestplate","plate":1}
       ]},
       {"section":"2. SHOULDERS", "items": [
-        {"name":"[MR+] Mirror Pauldrons","plate":1},
+        {"name":"[MR+] Mirror Pauldrons","plate":2},
         {"name":"[LR3+] Chainmail Coif","default":true},
         {"name":"[MR+] Coif Bedazzlement"}
       ]},
