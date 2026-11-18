@@ -109,13 +109,13 @@
       ]},
       {"section":"4. LESSER LEG ARMOR", "items": [
         {"name":"[LR3] Proto-splinted Greaves","plate":2},
-        {"name":"[MR1] Leather Scale Cuisses","plate":2},
+        {"name":"[MR1] Leather Scale Cuisses"},
         {"name":"[LR3] Padded Chausse"},
         {"name":"[MR3] Chaunmail Chausse"}
       ]},
       {"section":"3. GREATER LEG ARMOR", "items": [
         {"name":"[HR3] Plate Cuisses","plate":2},
-        {"name":"[HR1] Plate Greaves","plate":2},
+        {"name":"[HR1] Plate Greaves","plate":4},
         {"name":"[MR3] Plate Poleyons","plate":2}
       ]},
       {"section":"2. CHEST & CHAINMAIL ARMOR", "items": [
@@ -286,7 +286,7 @@
       {"section":"ARMOR", "items": [
         {"name":"Pinkscale Reinforced Jerkin","group":"da-jerkin","piece":"jerkin"},
         {"name":"Pinkskin Reinforced Jerkin without Pauldrons","group":"da-jerkin","default":true,"piece":"jerkin"},
-        {"name":"[LR3+] Painted Pink Scale Vambracers","default":true,"plate":2},
+        {"name":"[LR3+] Painted Pink Scale Vambracers","default":true},
         {"name":"[MR+] Waxed Tin-bronze Alloy Gauntlets","group":"da-gauntlets","plate":2},
         {"name":"[MR+] Slightly Oxidized Tin-bronze Alloy Gauntlets","group":"da-gauntlets","plate":2},
         {"name":"[HR+] Waxed Tin-bronze Rebracers","group":"da-rebracers","plate":2},
@@ -305,7 +305,7 @@
         {"name":"[HR+] Tailored Captain's Gilet","group":"da-vest","default":true},
         {"name":"BELT WRINKLE","default":true},
         {"name":"Yellow Sash","default":true},
-        {"name":"[LR3+] Painted Pinkscale Gorget","plate":1}
+        {"name":"[LR3+] Painted Pinkscale Gorget"}
       ]}
     ],
     "pants": [
@@ -345,7 +345,7 @@
         {"name":"Blue-Yellow Ptripped Puttees","group":"da-bloused"}
       ]},
       {"section":"ARMOR", "items": [
-        {"name":"[MR+] Painted Pinkscale Greaves","plate":2},
+        {"name":"[MR+] Painted Pinkscale Greaves"},
         {"name":"[HR+] Waxed Tin-bronze Alloy Cuisses","group":"da-cuisses","plate":2},
         {"name":"[HR+] Slightly Oxidized Tin-bronze Alloy Cuisses","group":"da-cuisses","plate":2},
         {"name":"[MR+] Waxed Tin-bronze Alloy Polyeons","group":"da-poleyons","plate":2},
