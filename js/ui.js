@@ -51,11 +51,10 @@ const sentenceCase = text => text.toLowerCase().replace(/(^|[.!?]\s+)([a-z])/g, 
  */
 export function itemSections(sections, { isOn, groupIsEmpty, onToggle, onGroupNone }) {
   const out = [];
-  // A group can span sections (e.g. plain, patterned and ranked tunics): one pick across all of them,
-  // with the "None" choice shown once, in the topmost of those sections.
+  // A group can span sections (e.g. plain, patterned and ranked tunics): one pick across all of them.
+  // Each of those sections gets its own radios and its own "None", so the pick can be cleared from any of them.
   const sectionsWith = g => sections.filter(s => s.items.some(l => l.group === g)).length;
-  const noneShown = new Set();
-  for (const s of [...sections].reverse()) {
+  for (const [si, s] of [...sections].reverse().entries()) {
     const items = [...s.items].reverse();
     if (!items.length) continue;
     const content = s.notes.map(t => el("p", { className: "secnote", textContent: sentenceCase(t) }));
@@ -64,12 +63,12 @@ export function itemSections(sections, { isOn, groupIsEmpty, onToggle, onGroupNo
       if (!l.group) { content.push(itemRow(l, { checked: isOn(l), onChange: on => onToggle(l, on) })); continue; }
       if (seen.has(l.group)) continue;
       seen.add(l.group);
-      const groupName = `${l.garment}-${l.group}`;
-      const shared = sectionsWith(l.group) > 1, none = !noneShown.has(l.group);
-      noneShown.add(l.group);
+      const shared = sectionsWith(l.group) > 1;
+      const groupName = shared ? `${l.garment}-${l.group}-${si}` : `${l.garment}-${l.group}`;
+      const noneOn = shared ? !items.some(o => o.group === l.group && isOn(o)) : groupIsEmpty(l.group);
       content.push(el("fieldset", { className: "pick" },
         el("legend", { textContent: shared ? "Choose one (one pick across sections)" : "Choose one" }),
-        ...(none ? [noneRow(groupName, groupIsEmpty(l.group), () => onGroupNone(l.group))] : []),
+        noneRow(groupName, noneOn, () => onGroupNone(l.group)),
         ...items.filter(o => o.group === l.group).map(o => itemRow(o, { type: "radio", groupName, checked: isOn(o), onChange: on => onToggle(o, on) }))));
     }
     out.push(section(s.name, items, ...content));
@@ -112,6 +111,17 @@ export function updateCounts(root, isOnId) {
   root.querySelectorAll(".sec").forEach(sec => {
     const ids = sec.dataset.items ? sec.dataset.items.split(",").map(Number) : [];
     sec.querySelector(".n").textContent = `${ids.filter(isOnId).length} of ${ids.length}`;
+  });
+}
+
+// After a tick, bring every radio back in line with the outfit: picking in one section of a shared group
+// unticks the others, and a section with nothing picked shows "None".
+export function syncPicks(root, isOnId) {
+  root.querySelectorAll(".pick").forEach(f => {
+    let any = false;
+    f.querySelectorAll(".row[data-id] input").forEach(i => { i.checked = isOnId(+i.closest(".row").dataset.id); any ||= i.checked; });
+    const none = f.querySelector(".row:not([data-id]) input");
+    if (none) none.checked = !any;
   });
 }
 

@@ -6,7 +6,7 @@ import { loadCatalog, parseName } from "./catalog.js";
 import { Outfit } from "./outfit.js";
 import { outfitWarnings, plateCount, rankForPlates, PLATE, RANK_PLATES, isArmour } from "./rules.js";
 import { loadImage, forgetImage, drawTemplate, drawShowcase, newCanvas, canvasBlob, layersZip, saveBlob } from "./render.js";
-import { itemSections, customSection, updateCounts, updateCustomPositions, branchButtons, filterList, loadError } from "./ui.js";
+import { itemSections, customSection, updateCounts, updateCustomPositions, branchButtons, filterList, syncPicks, loadError } from "./ui.js";
 
 const $ = id => document.getElementById(id);
 const view = { garment: "shirt", branch: null, skin: SHOWCASE.skinDefault, query: "", filter: "all" };
@@ -182,8 +182,8 @@ function renderList() {
   $("list").replaceChildren(...itemSections(sections, {
     isOn: l => outfit.isOn(l),
     groupIsEmpty: group => outfit.groupIsEmpty(g, group),
-    onToggle: (l, on) => { outfit.set(l, on); refresh(); },
-    onGroupNone: group => { outfit.clearGroup(g, group); refresh(); },
+    onToggle: (l, on) => { outfit.set(l, on); syncPicks($("list"), id => outfit.on[g].has(id)); refresh(); },
+    onGroupNone: group => { outfit.clearGroup(g, group); syncPicks($("list"), id => outfit.on[g].has(id)); refresh(); },
   }));
   $("mine").replaceChildren(customSection({
     title: `Custom ${GARMENT_LABEL[g]} Layers`,
