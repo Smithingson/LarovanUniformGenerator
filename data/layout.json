@@ -1,41 +1,87 @@
 {
   "Ingeld": {
     "shirt": [
-      {"section":"9. GARMENTS", "items": [
-        {"name":"Brown Gloves","default":true},
-        {"name":"Green Arm Wraps"},
-        {"name":"Green Arm Bands"},
-        {"name":"Green Arm Strings"},
-        {"name":"Willingman's Tunic+ (DO NOT USE WITH INGELD GAMBESON)"}
+      {"section":"9. GLOVES", "items": [
+        {"name":"Simple Gloves","group":"gloves","default":true},
+        {"name":"Winter Mittens","group":"gloves"},
+        {"name":"[LR3] Tailored Foldies","group":"gloves"}
+      ]},
+      {"section":"9. GARMENTS · PLAIN TUNICS", "items": [
+        {"name":"Short, Plain Tunic","group":"tunic","default":true},
+        {"name":"Long, Plain Tunic","group":"tunic"}
+      ]},
+      {"section":"9. GARMENTS · PATTERNED TUNICS", "items": [
+        {"name":"[LR2] Short, Flower Patterned Tunic +","group":"tunic"},
+        {"name":"[LR2] Short, Unkindly Fae Patterned Tunic +","group":"tunic"},
+        {"name":"[LR2] Short, Noble Patterned Tunic +","group":"tunic"},
+        {"name":"[LR2] Long, Linden King Patterned Tunic +","group":"tunic"},
+        {"name":"[LR2] Long, Noble Patterned Tunic +","group":"tunic"},
+        {"name":"[LR2] Long, Citrus Patterned Tunic +","group":"tunic"}
+      ]},
+      {"section":"9. GARMENTS · RANKED TUNICS", "items": [
+        {"name":"[MR] Gentry Tunic +","group":"tunic"},
+        {"name":"[MR] White Gentry Tunic +","group":"tunic"},
+        {"name":"[MR] Patterned Gentry Tunic +","group":"tunic"},
+        {"name":"[MR] Patterned White Gentry Tunic +","group":"tunic"},
+        {"name":"[HR] Block Patterned Noble Tunic +","group":"tunic"},
+        {"name":"[HR] Block Patterned White Noble Tunic +","group":"tunic"}
       ]},
       {"section":"8. GAMBESON", "items": [
-        {"name":"[LR2] Ingeld Gambeson 1+","group":"gambeson","default":true},
-        {"name":"[LR2] Ingeld Gambeson 2+","group":"gambeson"},
-        {"name":"[LR2] Ingeld Gambeson 3+","group":"gambeson"},
-        {"name":"(RAW) Ingeld Heraldry"},
-        {"name":"Grounded Armband Identifiers"},
-        {"name":"Bloused Brown Gloves","default":true}
+        {"name":"[LR2] Plain Gambeson +","group":"gambeson"},
+        {"name":"[LR2] Left, Partially Dyed Gambeson +","group":"gambeson"},
+        {"name":"[LR2] Right, Partially Dyed Gambeson +","group":"gambeson"},
+        {"name":"[LR2] Long Plain Gambeson +","group":"gambeson"},
+        {"name":"[LR2] Long Left, Partially Dyed Gambeson +","group":"gambeson"},
+        {"name":"[LR2] Long Right, Partially Dyed Gambeson +","group":"gambeson"}
       ]},
-      {"section":"7. CHAINMAIL", "items": [
-        {"name":"[MR+] Short-sleeved Chainmail Haubergeon","plate":0,"piece":"haubergeon"},
-        {"name":"[MR3] Full Chainmail Haubergeon+","plate":1,"piece":"haubergeon"}
+      {"section":"7. BODY ARMOUR", "items": [
+        {"name":"[MR2] Maille Mittens"},
+        {"name":"[LR3] Short-length Maille Hauberk +","group":"hauberk"},
+        {"name":"[MR1] Medium-length Maille Hauberk +","group":"hauberk"},
+        {"name":"[MR2] Long-length Maille Hauberk +","group":"hauberk","plate":1},
+        {"name":"[MR] Leather Jerkin +"},
+        {"name":"[MR] Dyed Leather Jerkin +"},
+        {"name":"[MR] Upper Pteruges +"},
+        {"name":"[MR] Dyed Upper Pteruges +"}
       ]},
-      {"section":"6. LESSER ARM ARMOR", "items": [
-        {"name":"[MR3] Splinted Rebracers","plate":2},
+      {"section":"6. LEVYMAN KLAPPENROCKS · VARIANT 1", "items": [
+        {"name":"Plain Klappenrock +","group":"klappenrock","default":true},
+        {"name":"[LR2] Holly Queen Patterned Klappenrock +","group":"klappenrock"},
+        {"name":"[LR2] Kindly Fae Patterned Klappenrock +","group":"klappenrock"},
+        {"name":"[LR2] Braided Patterned Klappenrock +","group":"klappenrock"},
+        {"name":"[MR] Klappenrock Embroidery Overlay +"},
+        {"name":"[HR] Block Patterned Klappenrock Overlay +"}
+      ]},
+      {"section":"6. LEVYMAN KLAPPENROCKS · VARIANT 2", "items": [
+        {"name":"Plain Klappenrock +","group":"klappenrock"},
+        {"name":"[LR2] Holly Queen Patterned Klappenrock +","group":"klappenrock"},
+        {"name":"[LR2] Kindly Fae Patterned Klappenrock +","group":"klappenrock"},
+        {"name":"[LR2] Braided Patterned Klappenrock +","group":"klappenrock"},
+        {"name":"[MR] Klappenrock Embroidery Overlay +"},
+        {"name":"[HR] Block Patterned Klappenrock Overlay +"}
+      ]},
+      {"section":"6. LEVYMAN KLAPPENROCKS · VARIANT 3", "items": [
+        {"name":"Plain Klappenrock +","group":"klappenrock"},
+        {"name":"[LR2] Holly Queen Patterned Klappenrock +","group":"klappenrock"},
+        {"name":"[LR2] Kindly Fae Patterned Klappenrock +","group":"klappenrock"},
+        {"name":"[LR2] Braided Patterned Klappenrock +","group":"klappenrock"},
+        {"name":"[MR] Klappenrock Embroidery Overlay +"},
+        {"name":"[HR] Block Patterned Klappenrock Overlay +"}
+      ]},
+      {"section":"5. ARM ARMOUR", "items": [
+        {"name":"[LR3] Rudimentary Vambraces","plate":2},
         {"name":"[LR3] Splinted Vambracers","plate":2},
-        {"name":"[LR3] Proto-splinted Bracers","plate":2},
-        {"name":"[⛊] Proto-couters [MR1+]","plate":2},
-        {"name":"[LR3] Fingerless Proto-Gauntlets","plate":2}
-      ]},
-      {"section":"5. GREATER ARM ARMOR", "items": [
+        {"name":"[MR3] Splinted Rebraces","plate":2},
+        {"name":"[MR1] Rudimentary Couters","plate":2},
+        {"name":"[LR3] Fingerless Proto-Gauntlets","plate":2},
         {"name":"[HR] Plate Rebracers","plate":2},
         {"name":"[HR] Plate Vambracers","plate":2},
-        {"name":"[LR3] Jackchains","plate":0},
-        {"name":"[LR3] Hourglass Gauntelts","default":true,"plate":2},
-        {"name":"[LR3] Plate Pauldrons","default":true,"plate":2},
+        {"name":"[LR3] Jackchains"},
+        {"name":"[LR3] Hourglass Gauntelts","plate":2},
+        {"name":"[LR3] Plate Pauldrons","plate":2},
         {"name":"[HR2] Plate Couters","plate":2}
       ]},
-      {"section":"4. CHEST ARMOR & ACCESSORIES", "items": [
+      {"section":"4. TORSO ARMOUR", "items": [
         {"name":"[LR3] Simple Leather Pteruges"},
         {"name":"[MR3] Lamellar Vest","plate":2},
         {"name":"[MR3] Lamellar Tassets+","plate":2,"piece":"lamellar-tassets"},
@@ -43,95 +89,219 @@
         {"name":"[⛊] Bannerman Coat of Plates [HR2+]","plate":1,"piece":"coat-of-plates"},
         {"name":"[HR3] Plate Cuirass","plate":1}
       ]},
-      {"section":"3. BELT, SASHES & BLOUSING", "items": [
+      {"section":"LOOSE KLAPPENROCK", "items": [
+        {"name":"Plain Klappenrock +","group":"klappenrock"},
+        {"name":"[LR2] Holly Queen Patterned Klappenrock +","group":"klappenrock"},
+        {"name":"[LR2] Kindly Fae Patterned Klappenrock +","group":"klappenrock"},
+        {"name":"[LR2] Braided Patterned Klappenrock +","group":"klappenrock"},
+        {"name":"[MR] Klappenrock Embroidery Overlay +"},
+        {"name":"[HR] Block Patterned Klappenrock Overlay +"}
+      ]},
+      {"section":"WINTER COAT", "items": [
+        {"name":"White Winter Coat +","group":"winter-coat"},
+        {"name":"Green Winter Coat +","group":"winter-coat"},
+        {"name":"Dark Green Winter Coat +","group":"winter-coat"},
+        {"name":"Winter Coat Brown Fur Overlay"}
+      ]},
+      {"section":"3. ACCESSORIES & OVERWEAR", "items": [
         {"name":"Sapper Appron"},
         {"name":"Pteruges"},
-        {"name":"Green Sash","default":true},
-        {"name":"Equipment Belt+","default":true},
-        {"name":"Swordbelt+"},
-        {"name":"[MR2] Chainmail Blousing"},
-        {"name":"Blousing"},
+        {"name":"Green Sash"},
+        {"name":"Thick Equipment Belt +","default":true},
+        {"name":"Thin Equipment Belt +","default":true},
+        {"name":"Antiquity Swordbelt +"},
+        {"name":"Prosperity-Era Swordbelt"},
+        {"name":"[LR] Iron Cingulum +","group":"cingulum"},
+        {"name":"[MR] Mixed-Metal Cingulum -","group":"cingulum"},
+        {"name":"[HR] Brass Cingulum +","group":"cingulum"},
+        {"name":"[AWARDED BY MR3+ to LR2] Iron Balteus +","group":"balteus"},
+        {"name":"[AWARDED BY MR3+ to LR2] Brass Balteus +","group":"balteus"},
+        {"name":"[MR1] Loyalty Armbands"},
         {"name":"[MR2] Loyalty Sash"}
       ]},
       {"section":"2. SHOULDER WEAR", "items": [
-        {"name":"Swordbelt Baldric"},
-        {"name":"[LR3] Chainmail Coif","default":true},
+        {"name":"Antiquity Swordbelt Baldric"},
+        {"name":"Prosperity-Era Baldric"},
+        {"name":"[LR3] Chainmail Coif"},
         {"name":"[MR1] Scale Coif","plate":1},
         {"name":"[MR1] Cavalry Scale Coif","plate":1},
         {"name":"[MR1] Rondels","plate":1}
       ]},
-      {"section":"1. OUTERWEAR", "items": [
+      {"section":"1. CLOAKS", "items": [
         {"name":"Dusty Red Blanket Cloak","group":"cloak"},
         {"name":"Dusty Red Poncho Cloak","group":"cloak"},
         {"name":"Hooded Cloak","group":"cloak"}
       ]}
     ],
     "pants": [
-      {"section":"FOOTWEAR", "items": [
-        {"name":"Brown Shoes","default":true}
+      {"section":"SOCKS & FOOTWRAPS FOR CALIGAE", "items": [
+        {"name":"Socks","default":true},
+        {"name":"Red Footwraps"},
+        {"name":"Brown Footwraps"},
+        {"name":"Green Footwraps"},
+        {"name":"Yellow Footwraps"}
       ]},
-      {"section":"PRESET TROUSERS", "items": [
-        {"name":"Simple Trousers 1","group":"trousers"},
-        {"name":"Simple Trousers 2","group":"trousers"},
-        {"name":"Rope Belt"},
-        {"name":"Trousers [VAR 1]","group":"trousers","default":true},
-        {"name":"Trousers [VAR 2]","group":"trousers"},
-        {"name":"Trousers [VAR 3]","group":"trousers"},
-        {"name":"Trousers [VAR 4]","group":"trousers"},
-        {"name":"Trousers [VAR 5]","group":"trousers"},
-        {"name":"Trousers [VAR 6]","group":"trousers"},
-        {"name":"Trousers 7","group":"trousers"},
-        {"name":"Trousers 8","group":"trousers"},
-        {"name":"Trousers 9","group":"trousers"},
-        {"name":"Knee Patches","default":true},
-        {"name":"Fur Lining"}
+      {"section":"9. FOOTWARE", "items": [
+        {"name":"Caligae","group":"footwear","default":true},
+        {"name":"Brown Shoes","group":"footwear"},
+        {"name":"Trudging Boots","group":"footwear"},
+        {"name":"[MR] Closed-foot Caligae","group":"footwear"},
+        {"name":"[MR] Avontal Steppe Boots","group":"footwear"},
+        {"name":"[MR] Folded Avontal Steppe Boots","group":"footwear"},
+        {"name":"[LR3, CAVALRY ONLY] Riding Spurs"}
       ]},
-      {"section":"FOOTWEAR OVER", "items": [
-        {"name":"Legwraps and Socks [VAR 1]","group":"legwraps"},
-        {"name":"Legwraps and Socks [VAR 2]","group":"legwraps"},
-        {"name":"Legwraps and Socks [VAR 3]","group":"legwraps"},
-        {"name":"Legwraps and Socks [VAR 4]","group":"legwraps"},
-        {"name":"Caligae"},
-        {"name":"Caligae with Socks"},
-        {"name":"Brown Shoes"}
+      {"section":"8. TROUSERS · FOOTWRAPS FOR BLOUSED PANTS", "items": [
+        {"name":"Red Footwraps"},
+        {"name":"Brown Footwraps"},
+        {"name":"Green Footwraps"},
+        {"name":"Yellow Footwraps"},
+        {"name":"Half Red Overlay"},
+        {"name":"Half Brown Overlay"},
+        {"name":"Half Green Overlay"},
+        {"name":"Half Yellow Overlay"}
       ]},
-      {"section":"6. CUSTOM TROUSERS", "items": [
-        {"name":"Main Trouser Color"},
-        {"name":"Stripes Right"},
-        {"name":"Stripes Left"},
-        {"name":"Custom Trouser Overlay"}
+      {"section":"8. TROUSERS · BLOUSED TROUSERS", "items": [
+        {"name":"White Trousers","group":"trousers"},
+        {"name":"Green Trousers","group":"trousers"},
+        {"name":"Red Trousers","group":"trousers"},
+        {"name":"Plaid Trousers","group":"trousers","default":true},
+        {"name":"Bloused, Left Stripes"},
+        {"name":"Bloused, Right Stripes"},
+        {"name":"Bloused Knee Patches"}
       ]},
-      {"section":"5. GAMBESON & GARMENT DROPDOWNS", "items": [
-        {"name":"Willingman Tunic- (DO NOT USE WITH INGELD GAMBESON)"},
-        {"name":"[LR2] Ingeld Gambeson 1-","group":"gambeson","default":true},
-        {"name":"[LR2] Ingeld Gambeson 2-","group":"gambeson"},
-        {"name":"[LR2] Ingeld Gambeson 3","group":"gambeson"}
+      {"section":"8. TROUSERS · PLAIN TROUSERS", "items": [
+        {"name":"White Trousers","group":"trousers"},
+        {"name":"Green Trousers","group":"trousers"},
+        {"name":"Red Trousers","group":"trousers"},
+        {"name":"Plaid Trousers","group":"trousers"},
+        {"name":"Plain, Left Stripes"},
+        {"name":"Plain, Right Stripes"},
+        {"name":"Knee Patches"}
       ]},
-      {"section":"4. LESSER LEG ARMOR", "items": [
-        {"name":"[LR3] Proto-splinted Greaves","plate":2},
-        {"name":"[MR1] Leather Scale Cuisses"},
-        {"name":"[LR3] Padded Chausse"},
-        {"name":"[MR3] Chaunmail Chausse"}
+      {"section":"8. TROUSERS · TROUSERS WITH PUTTEES", "items": [
+        {"name":"White Trousers","group":"trousers"},
+        {"name":"Green Trousers","group":"trousers"},
+        {"name":"Red Trousers","group":"trousers"},
+        {"name":"Plaid Trousers","group":"trousers"},
+        {"name":"Red Puttees Overlay (DO NOT USE ON RED)","group":"puttees"},
+        {"name":"Green Puttees Overlay (DO NOT USE ON GREEN)","group":"puttees"},
+        {"name":"White Puttees Overlay (DO NOT USE ON WHITE)","group":"puttees"},
+        {"name":"Puttees, Left Stripes"},
+        {"name":"Puttees, Right Stripes"},
+        {"name":"Knee Patches"},
+        {"name":"Pale Fur Lining","group":"fur-lining"},
+        {"name":"Brown Fur Lining","group":"fur-lining"}
       ]},
-      {"section":"3. GREATER LEG ARMOR", "items": [
+      {"section":"8. TROUSERS · FOOTWARE OVER", "items": [
+        {"name":"Caligae","group":"footwear"},
+        {"name":"Brown Shoes","group":"footwear"},
+        {"name":"Trudging Boots","group":"footwear"},
+        {"name":"[MR] Closed-foot Caligae","group":"footwear"},
+        {"name":"[MR] Avontal Steppe Boots","group":"footwear"},
+        {"name":"[MR] Folded Avontal Steppe Boots","group":"footwear"},
+        {"name":"[LR3, CAVALRY ONLY] Riding Spurs"},
+        {"name":"Folded Socks Overlay"}
+      ]},
+      {"section":"7. GARMENTS · PLAIN TUNICS", "items": [
+        {"name":"Short, Plain Tunic -","group":"tunic","default":true},
+        {"name":"Long, Plain Tunic -","group":"tunic"}
+      ]},
+      {"section":"7. GARMENTS · PATTERNED TUNICS", "items": [
+        {"name":"[LR2] Short, Flower Patterned Tunic -","group":"tunic"},
+        {"name":"[LR2] Short, Unkindly Fae Patterned Tunic -","group":"tunic"},
+        {"name":"[LR2] Short, Noble Patterned Tunic -","group":"tunic"},
+        {"name":"[LR2] Long, Linden King Patterned Tunic -","group":"tunic"},
+        {"name":"[LR2] Long, Noble Patterned Tunic -","group":"tunic"},
+        {"name":"[LR2] Long, Citrus Patterned Tunic -","group":"tunic"}
+      ]},
+      {"section":"7. GARMENTS · RANKED TUNICS", "items": [
+        {"name":"[MR] Gentry Tunic -","group":"tunic"},
+        {"name":"[MR] Patterned Gentry Tunic -","group":"tunic"},
+        {"name":"[MR] Patterned White Gentry Tunic -","group":"tunic"},
+        {"name":"[HR] Block Patterned Noble Tunic -","group":"tunic"},
+        {"name":"[HR] Block Patterned White Noble Tunic -","group":"tunic"}
+      ]},
+      {"section":"6. GAMBESON DROPDOWNS", "items": [
+        {"name":"[LR2] Plain Gambeson -","group":"gambeson"},
+        {"name":"[LR2] Left, Partially Dyed Gambeson -","group":"gambeson"},
+        {"name":"[LR2] Right, Partially Dyed Gambeson -","group":"gambeson"},
+        {"name":"[LR2] Long Plain Gambeson -","group":"gambeson"},
+        {"name":"[LR2] Long Left, Partially Dyed Gambeson -","group":"gambeson"},
+        {"name":"[LR2] Long Right, Partially Dyed Gambeson -","group":"gambeson"}
+      ]},
+      {"section":"6. LEG ARMOUR", "items": [
+        {"name":"[MR2] Maille Chausses (COSTS 1 PLATE)","plate":1},
+        {"name":"[LR3] Rudimentary Greaves","plate":2},
+        {"name":"[MR1] Leather Scale Skirt"},
+        {"name":"[LR3] Gambeson Cuisses"},
+        {"name":"[MR2] Maille Cuisses"},
         {"name":"[HR3] Plate Cuisses","plate":2},
         {"name":"[HR1] Plate Greaves","plate":4},
         {"name":"[MR3] Plate Poleyons","plate":2}
       ]},
-      {"section":"2. CHEST & CHAINMAIL ARMOR", "items": [
-        {"name":"[MR1-3] Chainmail Haubergeon-","plate":0,"piece":"haubergeon"},
+      {"section":"5. BODY ARMOUR", "items": [
+        {"name":"[LR3] Short-Length Hauberk -","group":"hauberk"},
+        {"name":"[MR] Traditional Hauberk -","group":"hauberk"},
+        {"name":"[MR] Alternative Hauberk -","group":"hauberk"},
+        {"name":"[MR] Upper Pteruges -"},
+        {"name":"[MR] Lower Pteruges -"},
+        {"name":"[MR] Dyed Upper Pteruges -"},
+        {"name":"[MR] Dyed Lower Pteruges -"}
+      ]},
+      {"section":"4. KLAPPENROCKS · VARIANT 1", "items": [
+        {"name":"Plain Klappenrock -","group":"klappenrock","default":true},
+        {"name":"[LR2] Holly Queen Patterned Klappenrock -","group":"klappenrock"},
+        {"name":"[LR2] Kindly Fae Patterned Klappenrock -","group":"klappenrock"},
+        {"name":"[LR2] Braided Patterned Klappenrock -","group":"klappenrock"},
+        {"name":"[MR] Klappenrock Embroidery Overlay -"},
+        {"name":"[HR] Block Patterned Klappenrock Overlay -"}
+      ]},
+      {"section":"4. KLAPPENROCKS · VARIANT 2", "items": [
+        {"name":"Plain Klappenrock -","group":"klappenrock"},
+        {"name":"[LR2] Holly Queen Patterned Klappenrock -","group":"klappenrock"},
+        {"name":"[LR2] Kindly Fae Patterned Klappenrock -","group":"klappenrock"},
+        {"name":"[LR2] Braided Patterned Klappenrock -","group":"klappenrock"},
+        {"name":"[MR] Klappenrock Embroidery Overlay -"},
+        {"name":"[HR] Block Patterned Klappenrock Overlay -"}
+      ]},
+      {"section":"4. KLAPPENROCKS · VARIANT 3", "items": [
+        {"name":"Plain Klappenrock -","group":"klappenrock"},
+        {"name":"[LR2] Holly Queen Patterned Klappenrock -","group":"klappenrock"},
+        {"name":"[LR2] Kindly Fae Patterned Klappenrock -","group":"klappenrock"},
+        {"name":"[LR2] Braided Patterned Klappenrock -","group":"klappenrock"},
+        {"name":"[MR] Klappenrock Embroidery Overlay -"},
+        {"name":"[HR] Block Patterned Klappenrock Overlay -"}
+      ]},
+      {"section":"3. ARMOUR DROPDOWNS", "items": [
         {"name":"[LR3] Simple Leather Pteruges"},
         {"name":"[MR3] Lamellar Tassets-","plate":2,"piece":"lamellar-tassets"},
         {"name":"[MR3] Auxilleries' Scalemail Vest-","plate":2,"piece":"scale-vest"},
         {"name":"[HR2] Coat-of-Plates-","plate":1,"piece":"coat-of-plates"}
       ]},
-      {"section":"2. BELT & ACCESSORY DROPDOWNS", "items": [
+      {"section":"LOOSE KLAPPENROCK DROPDOWN", "items": [
+        {"name":"Plain Klappenrock -","group":"klappenrock"},
+        {"name":"[LR2] Holly Queen Patterned Klappenrock -","group":"klappenrock"},
+        {"name":"[LR2] Kindly Fae Patterned Klappenrock -","group":"klappenrock"},
+        {"name":"[LR2] Braided Patterned Klappenrock -","group":"klappenrock"},
+        {"name":"[MR] Klappenrock Embroidery Overlay -"},
+        {"name":"[HR] Block Patterned Klappenrock Overlay -"}
+      ]},
+      {"section":"WINTER COAT DROPDOWN", "items": [
+        {"name":"White Winter Coat -","group":"winter-coat"},
+        {"name":"Green Winter Coat -","group":"winter-coat"},
+        {"name":"Dark Green Winter Coat -","group":"winter-coat"}
+      ]},
+      {"section":"2. ACCESSORY & OVERWEAR DROPDOWNS", "items": [
         {"name":"Sapper Appron"},
         {"name":"Proper Leather Pteruges-"},
-        {"name":"Equipment Belt-","default":true},
-        {"name":"Swordbelt-"}
+        {"name":"Long Equipment Belt -"},
+        {"name":"Short Equipment Belt"},
+        {"name":"Antiquity Swordbelt -"},
+        {"name":"Cingulum Dropdown -"},
+        {"name":"[AWARDED BY MR3+ to LR2] Iron Balteus -","group":"balteus"},
+        {"name":"[AWARDED BY MR3+ to LR2] Brass Balteus -","group":"balteus"}
       ]},
-      {"section":"1. OUTWEAR DROPDOWNS", "items": [
+      {"section":"1. CLOAK DROPDOWNS", "items": [
         {"name":"Dusty Red Blanket Cloak","group":"cloak"},
         {"name":"Dusty Red Poncho Cloak","group":"cloak"},
         {"name":"Hooded Cloak","group":"cloak"}

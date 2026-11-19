@@ -51,6 +51,10 @@ const sentenceCase = text => text.toLowerCase().replace(/(^|[.!?]\s+)([a-z])/g, 
  */
 export function itemSections(sections, { isOn, groupIsEmpty, onToggle, onGroupNone }) {
   const out = [];
+  // A group can span sections (e.g. plain, patterned and ranked tunics): one pick across all of them,
+  // with the "None" choice shown once, in the topmost of those sections.
+  const sectionsWith = g => sections.filter(s => s.items.some(l => l.group === g)).length;
+  const noneShown = new Set();
   for (const s of [...sections].reverse()) {
     const items = [...s.items].reverse();
     if (!items.length) continue;
@@ -61,9 +65,11 @@ export function itemSections(sections, { isOn, groupIsEmpty, onToggle, onGroupNo
       if (seen.has(l.group)) continue;
       seen.add(l.group);
       const groupName = `${l.garment}-${l.group}`;
+      const shared = sectionsWith(l.group) > 1, none = !noneShown.has(l.group);
+      noneShown.add(l.group);
       content.push(el("fieldset", { className: "pick" },
-        el("legend", { textContent: "Choose one" }),
-        noneRow(groupName, groupIsEmpty(l.group), () => onGroupNone(l.group)),
+        el("legend", { textContent: shared ? "Choose one (one pick across sections)" : "Choose one" }),
+        ...(none ? [noneRow(groupName, groupIsEmpty(l.group), () => onGroupNone(l.group))] : []),
         ...items.filter(o => o.group === l.group).map(o => itemRow(o, { type: "radio", groupName, checked: isOn(o), onChange: on => onToggle(o, on) }))));
     }
     out.push(section(s.name, items, ...content));
