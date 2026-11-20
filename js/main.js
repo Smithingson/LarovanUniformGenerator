@@ -60,19 +60,31 @@ function needed() {
 }
 const allLoaded = () => needed().every(s => images.has(s) || failed.has(s));
 
-async function ensure(srcs) {
+// Loads for what's on screen (ticks, branch switches) count as "wanted"; background loading waits for them.
+let wanted = 0, wantedDone = Promise.resolve(), wantedEnd = () => {};
+async function ensure(srcs, priority = "high") {
   const missing = [...new Set(srcs)].filter(s => s && !images.has(s) && !failed.has(s));
   if (!missing.length) return;
-  const loaded = await Promise.all(missing.map(loadImage));
-  missing.forEach((s, i) => loaded[i] ? images.set(s, loaded[i]) : failed.add(s));
+  if (priority === "high" && wanted++ === 0) wantedDone = new Promise(r => { wantedEnd = r; });
+  try {
+    const loaded = await Promise.all(missing.map(s => loadImage(s, priority)));
+    missing.forEach((s, i) => loaded[i] ? images.set(s, loaded[i]) : failed.add(s));
+  } finally {
+    if (priority === "high" && --wanted === 0) wantedEnd();
+  }
 }
 
 // The rest of this branch's items for this garment, a few at a time, so ticking them is instant.
+// It pauses whenever something the player just picked is loading, so that goes first.
 let prefetchRun = 0;
 async function prefetch() {
   const run = ++prefetchRun, g = view.garment;
   const todo = catalog.garments[g].items.filter(l => l.branch === view.branch && !images.has(l.src) && !failed.has(l.src)).map(l => l.src);
-  for (let i = 0; i < todo.length && run === prefetchRun; i += 4) await ensure(todo.slice(i, i + 4));
+  for (let i = 0; i < todo.length && run === prefetchRun; i += 4) {
+    while (wanted) await wantedDone;
+    await ensure(todo.slice(i, i + 4), "low");
+    if (todo.slice(i, i + 4).some(s => failed.has(s))) dropBrokenItems();   // hide it before anyone ticks it
+  }
 }
 
 // Items whose image failed are unticked and hidden, and reported. Returns true if the list was redrawn.
@@ -119,10 +131,9 @@ async function refresh() {
   showStatus();
   updateCounts(document, id => outfit.on[g].has(id));
   updateCustomPositions($("mine"), outfit.stack(g, view.branch));
-  if (!allLoaded()) {
-    await ensure(needed());
-    dropBrokenItems();
-  }
+  if (!allLoaded()) await ensure(needed());
+  // An item whose image failed (now or in the background) is unticked before drawing; drawing it would fail.
+  if (needed().some(s => failed.has(s))) dropBrokenItems();
   draw();
 }
 

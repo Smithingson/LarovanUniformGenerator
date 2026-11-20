@@ -5,12 +5,19 @@ import { TEMPLATE, SHOWCASE } from "./config.js";
 
 // Load an image once; resolves to null (instead of failing) when it can't be loaded.
 const cache = new Map();
-export function loadImage(src) {
+// Resolves to the image, or null if it still fails after a couple of retries (a flaky phone connection
+// shouldn't drop an item for good). "low" priority is for background loading.
+const RETRY_MS = [1000, 3000];
+export function loadImage(src, priority = "high") {
   if (!cache.has(src)) cache.set(src, new Promise(res => {
-    const img = new Image();
-    img.onload = () => res(img);
-    img.onerror = () => res(null);
-    img.src = src;
+    const attempt = n => {
+      const img = new Image();
+      img.fetchPriority = priority;
+      img.onload = () => res(img);
+      img.onerror = () => n < RETRY_MS.length ? setTimeout(() => attempt(n + 1), RETRY_MS[n]) : res(null);
+      img.src = src;
+    };
+    attempt(0);
   }));
   return cache.get(src);
 }
